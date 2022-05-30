@@ -9,13 +9,26 @@
 /* Begin PBXBuildFile section */
 		1ACE59B12844B20900A102C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59B02844B20900A102C1 /* AppDelegate.swift */; };
 		1ACE59B32844B20900A102C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59B22844B20900A102C1 /* SceneDelegate.swift */; };
-		1ACE59B52844B20900A102C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59B42844B20900A102C1 /* ViewController.swift */; };
-		1ACE59B82844B20900A102C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ACE59B62844B20900A102C1 /* Main.storyboard */; };
+		1ACE59B52844B20900A102C1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59B42844B20900A102C1 /* HomeViewController.swift */; };
+		1ACE59B82844B20900A102C1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ACE59B62844B20900A102C1 /* Home.storyboard */; };
 		1ACE59BA2844B20C00A102C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ACE59B92844B20C00A102C1 /* Assets.xcassets */; };
 		1ACE59BD2844B20C00A102C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ACE59BB2844B20C00A102C1 /* LaunchScreen.storyboard */; };
 		1ACE59C82844B20C00A102C1 /* HiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59C72844B20C00A102C1 /* HiTests.swift */; };
 		1ACE59D22844B20C00A102C1 /* HiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59D12844B20C00A102C1 /* HiUITests.swift */; };
 		1ACE59D42844B20C00A102C1 /* HiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59D32844B20C00A102C1 /* HiUITestsLaunchTests.swift */; };
+		1ACE59E328452BCE00A102C1 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59E228452BCE00A102C1 /* NetworkManagerProtocol.swift */; };
+		1ACE59E528452BDD00A102C1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59E428452BDD00A102C1 /* NetworkManager.swift */; };
+		1ACE59E828452C5100A102C1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59E728452C5100A102C1 /* Endpoint.swift */; };
+		1ACE59EA28452C8200A102C1 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59E928452C8200A102C1 /* HttpMethod.swift */; };
+		1ACE59EC28452CBB00A102C1 /* HiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59EB28452CBB00A102C1 /* HiEndpoint.swift */; };
+		1ACE59EE284530C200A102C1 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59ED284530C200A102C1 /* NetworkLogger.swift */; };
+		1ACE59F0284530D100A102C1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59EF284530D100A102C1 /* NetworkError.swift */; };
+		1ACE59F52845315000A102C1 /* NetworkLoggerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F42845315000A102C1 /* NetworkLoggerProtocol.swift */; };
+		1ACE59F92845376400A102C1 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F72845376400A102C1 /* MockNetworkManager.swift */; };
+		1ACE59FA2845376400A102C1 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F82845376400A102C1 /* MockURLProtocol.swift */; };
+		1ACE59FF28454EF400A102C1 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59FE28454EF400A102C1 /* Observable.swift */; };
+		1ACE5A0328454F5E00A102C1 /* DotsLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE5A0128454F5E00A102C1 /* DotsLoadingIndicator.swift */; };
+		1ACE5A0428454F5E00A102C1 /* LoadingIndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE5A0228454F5E00A102C1 /* LoadingIndicatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +52,8 @@
 		1ACE59AD2844B20900A102C1 /* Hi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACE59B02844B20900A102C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ACE59B22844B20900A102C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1ACE59B42844B20900A102C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1ACE59B72844B20900A102C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1ACE59B42844B20900A102C1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1ACE59B72844B20900A102C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		1ACE59B92844B20C00A102C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ACE59BC2844B20C00A102C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ACE59BE2844B20C00A102C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +62,19 @@
 		1ACE59CD2844B20C00A102C1 /* HiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACE59D12844B20C00A102C1 /* HiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiUITests.swift; sourceTree = "<group>"; };
 		1ACE59D32844B20C00A102C1 /* HiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1ACE59E228452BCE00A102C1 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		1ACE59E428452BDD00A102C1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1ACE59E728452C5100A102C1 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		1ACE59E928452C8200A102C1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		1ACE59EB28452CBB00A102C1 /* HiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiEndpoint.swift; sourceTree = "<group>"; };
+		1ACE59ED284530C200A102C1 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		1ACE59EF284530D100A102C1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		1ACE59F42845315000A102C1 /* NetworkLoggerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerProtocol.swift; sourceTree = "<group>"; };
+		1ACE59F72845376400A102C1 /* MockNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		1ACE59F82845376400A102C1 /* MockURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		1ACE59FE28454EF400A102C1 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		1ACE5A0128454F5E00A102C1 /* DotsLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsLoadingIndicator.swift; sourceTree = "<group>"; };
+		1ACE5A0228454F5E00A102C1 /* LoadingIndicatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +125,10 @@
 		1ACE59AF2844B20900A102C1 /* Hi */ = {
 			isa = PBXGroup;
 			children = (
-				1ACE59B02844B20900A102C1 /* AppDelegate.swift */,
-				1ACE59B22844B20900A102C1 /* SceneDelegate.swift */,
-				1ACE59B42844B20900A102C1 /* ViewController.swift */,
-				1ACE59B62844B20900A102C1 /* Main.storyboard */,
-				1ACE59B92844B20C00A102C1 /* Assets.xcassets */,
-				1ACE59BB2844B20C00A102C1 /* LaunchScreen.storyboard */,
-				1ACE59BE2844B20C00A102C1 /* Info.plist */,
+				1ACE5A082845525C00A102C1 /* Application */,
+				1ACE59FC28454B4F00A102C1 /* Home */,
+				1ACE59E028452B9E00A102C1 /* NetworkLayer */,
+				1ACE59FD28454ED200A102C1 /* Utils */,
 			);
 			path = Hi;
 			sourceTree = "<group>";
@@ -113,6 +136,8 @@
 		1ACE59C62844B20C00A102C1 /* HiTests */ = {
 			isa = PBXGroup;
 			children = (
+				1ACE59F62845374000A102C1 /* MockNetworkLayer */,
+				1ACE59FB28454B2E00A102C1 /* Home */,
 				1ACE59C72844B20C00A102C1 /* HiTests.swift */,
 			);
 			path = HiTests;
@@ -125,6 +150,124 @@
 				1ACE59D32844B20C00A102C1 /* HiUITestsLaunchTests.swift */,
 			);
 			path = HiUITests;
+			sourceTree = "<group>";
+		};
+		1ACE59E028452B9E00A102C1 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59E628452C4300A102C1 /* Endpoint */,
+				1ACE59F2284530F300A102C1 /* Network Logger */,
+				1ACE59E128452BAD00A102C1 /* Manager */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		1ACE59E128452BAD00A102C1 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59E228452BCE00A102C1 /* NetworkManagerProtocol.swift */,
+				1ACE59E428452BDD00A102C1 /* NetworkManager.swift */,
+				1ACE59EF284530D100A102C1 /* NetworkError.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		1ACE59E628452C4300A102C1 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59E728452C5100A102C1 /* Endpoint.swift */,
+				1ACE59EB28452CBB00A102C1 /* HiEndpoint.swift */,
+				1ACE59E928452C8200A102C1 /* HttpMethod.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		1ACE59F2284530F300A102C1 /* Network Logger */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59F42845315000A102C1 /* NetworkLoggerProtocol.swift */,
+				1ACE59ED284530C200A102C1 /* NetworkLogger.swift */,
+			);
+			path = "Network Logger";
+			sourceTree = "<group>";
+		};
+		1ACE59F62845374000A102C1 /* MockNetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59F72845376400A102C1 /* MockNetworkManager.swift */,
+				1ACE59F82845376400A102C1 /* MockURLProtocol.swift */,
+			);
+			path = MockNetworkLayer;
+			sourceTree = "<group>";
+		};
+		1ACE59FB28454B2E00A102C1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1ACE59FC28454B4F00A102C1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE5A05284550FB00A102C1 /* Models */,
+				1ACE5A072845512900A102C1 /* Views */,
+				1ACE5A062845510700A102C1 /* ViewModels */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1ACE59FD28454ED200A102C1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59FE28454EF400A102C1 /* Observable.swift */,
+				1ACE5A0028454F5E00A102C1 /* LoadingAnimation */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1ACE5A0028454F5E00A102C1 /* LoadingAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE5A0228454F5E00A102C1 /* LoadingIndicatorProtocol.swift */,
+				1ACE5A0128454F5E00A102C1 /* DotsLoadingIndicator.swift */,
+			);
+			path = LoadingAnimation;
+			sourceTree = "<group>";
+		};
+		1ACE5A05284550FB00A102C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1ACE5A062845510700A102C1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1ACE5A072845512900A102C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59B42844B20900A102C1 /* HomeViewController.swift */,
+				1ACE59B62844B20900A102C1 /* Home.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1ACE5A082845525C00A102C1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59B02844B20900A102C1 /* AppDelegate.swift */,
+				1ACE59B22844B20900A102C1 /* SceneDelegate.swift */,
+				1ACE59B92844B20C00A102C1 /* Assets.xcassets */,
+				1ACE59BB2844B20C00A102C1 /* LaunchScreen.storyboard */,
+				1ACE59BE2844B20C00A102C1 /* Info.plist */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +376,7 @@
 			files = (
 				1ACE59BD2844B20C00A102C1 /* LaunchScreen.storyboard in Resources */,
 				1ACE59BA2844B20C00A102C1 /* Assets.xcassets in Resources */,
-				1ACE59B82844B20900A102C1 /* Main.storyboard in Resources */,
+				1ACE59B82844B20900A102C1 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +401,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ACE59B52844B20900A102C1 /* ViewController.swift in Sources */,
+				1ACE59B52844B20900A102C1 /* HomeViewController.swift in Sources */,
 				1ACE59B12844B20900A102C1 /* AppDelegate.swift in Sources */,
+				1ACE5A0428454F5E00A102C1 /* LoadingIndicatorProtocol.swift in Sources */,
+				1ACE59E528452BDD00A102C1 /* NetworkManager.swift in Sources */,
+				1ACE5A0328454F5E00A102C1 /* DotsLoadingIndicator.swift in Sources */,
+				1ACE59EA28452C8200A102C1 /* HttpMethod.swift in Sources */,
+				1ACE59FF28454EF400A102C1 /* Observable.swift in Sources */,
+				1ACE59E328452BCE00A102C1 /* NetworkManagerProtocol.swift in Sources */,
+				1ACE59EC28452CBB00A102C1 /* HiEndpoint.swift in Sources */,
+				1ACE59EE284530C200A102C1 /* NetworkLogger.swift in Sources */,
+				1ACE59E828452C5100A102C1 /* Endpoint.swift in Sources */,
+				1ACE59F52845315000A102C1 /* NetworkLoggerProtocol.swift in Sources */,
 				1ACE59B32844B20900A102C1 /* SceneDelegate.swift in Sources */,
+				1ACE59F0284530D100A102C1 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +422,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACE59FA2845376400A102C1 /* MockURLProtocol.swift in Sources */,
+				1ACE59F92845376400A102C1 /* MockNetworkManager.swift in Sources */,
 				1ACE59C82844B20C00A102C1 /* HiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,12 +453,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1ACE59B62844B20900A102C1 /* Main.storyboard */ = {
+		1ACE59B62844B20900A102C1 /* Home.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1ACE59B72844B20900A102C1 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Home.storyboard;
 			sourceTree = "<group>";
 		};
 		1ACE59BB2844B20C00A102C1 /* LaunchScreen.storyboard */ = {
@@ -440,10 +596,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Hi/Info.plist;
+				INFOPLIST_FILE = Hi/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,10 +622,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Hi/Info.plist;
+				INFOPLIST_FILE = Hi/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
