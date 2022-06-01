@@ -14,26 +14,32 @@ class HomeViewModelTests: XCTestCase {
     private let digitalCurrency_eth_usd: String = "digitalCurrency_eth_usd"
 
     override func setUpWithError() throws {
-        sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()))
     }
 
     override func tearDownWithError() throws {
         sut = nil
     }
 
-    func testExample() throws {
+    /// Testing initial api call such that page is correctly fetched
+    func testApi_whenCorrectApiInfoIsGiven_page1IsCorrectlyReceived() throws {
+        // Arrange
+
+        let pageSize = 10
+        sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()))
         let expectation = self.expectation(description: "Currency Expectation")
         let currencyData = UnitTestUtils.getCurrencyData(from: digitalCurrency_eth_usd)
         MockURLProtocol.stubResponseData = currencyData
         
-        sut.displayItems.observe(on: self) { currecyList in
+        // Assert + Act
+        sut.displayItems.observe(on: self) { currencyList in
+            XCTAssertEqual(currencyList.count, pageSize)
             expectation.fulfill()
         }
         
         sut.errorMessage.observe(on: self) { err in
-            print(err)
             XCTFail()
         }
+        
         sut.fetchCurrencyInformation()
         
         self.waitForExpectations(timeout: 1.0, handler: nil)
