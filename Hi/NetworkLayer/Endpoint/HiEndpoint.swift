@@ -7,9 +7,11 @@
 
 import Foundation
 
+typealias QueryParams = [String: String]
+
 enum HiEndpoint: Endpoint {
     
-case query(function: String, symbol: String, market: String, apikey: String)
+case query(queryParams: QueryParams)
     
     //query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=CNY&apikey=demo
     var baseURL: URL {
@@ -26,15 +28,8 @@ case query(function: String, symbol: String, market: String, apikey: String)
         }
     }
     
-    var queryParams: [String: String]? {
-        switch self {
-        case .query(let function, let symbol, let market, let apikey):
-            return ["function": function, "symbol": symbol, "market": market, "apikey": apikey]
-        }
-    }
-    
     var headers: [String: String]? {
-        return nil
+        ["User-Agent": "Hi iOS App"]
     }
     
     var httpMethod: String {
@@ -44,12 +39,26 @@ case query(function: String, symbol: String, market: String, apikey: String)
         }
     }
     
+    var requestType: RequestType {
+        switch self {
+        case .query(let queryParams):
+            return RequestType.query(queryParams)
+        }
+    }
     /// Helper function to create a URLRequest object using EndPoint
     func createRequest() -> URLRequest {
         let url = self.baseURL.appendingPathComponent(self.path)
         var urlRequest = URLRequest.init(url: url)
         urlRequest.allHTTPHeaderFields = self.headers
         urlRequest.httpMethod = self.httpMethod
+        
+        switch self.requestType {
+        case .simple:
+            break
+        case .query(let queryParams):
+            RequestEncoder().encodeRequest(urlRequest: &urlRequest, queryParams)
+        }
+
         return urlRequest
     }
 

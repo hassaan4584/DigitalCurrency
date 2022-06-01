@@ -18,6 +18,7 @@ protocol Endpoint {
     /// The `http` method of request
     var httpMethod: String { get }
 
+    var requestType: RequestType { get }
     /// Helper function to create a URLRequest object using EndPoint
     func createRequest() -> URLRequest;
 }

@@ -1,5 +1,5 @@
 //
-//  QueryRequestEncoder.swift
+//  RequestEncoder.swift
 //  Hi
 //
 //  Created by Hassaan Fayyaz Ahmed on 6/1/22.
@@ -7,11 +7,7 @@
 
 import Foundation
 
-/**
- * This class is responsible for instering 'QueryParams' into the request
- */
-class QueryRequestEncoder: RequestEncoding {
-
+class RequestEncoder: RequestEncodingProtocol {
     /**
      This function inserts the QueryParams into the URLRequest object
      
@@ -31,6 +27,5 @@ class QueryRequestEncoder: RequestEncoding {
             components.percentEncodedQueryItems?.append(queryItem)
         }
         urlRequest.url = components.url
-
     }
 }
