@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        guard let _ = (scene as? UIWindowScene) else { return }
         window = UIWindow()
         window?.windowScene = scene as? UIWindowScene
-        window?.rootViewController = HomeViewController.createListViewController()
+        let homeViewModel = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: NetworkManager()))
+        window?.rootViewController = HomeViewController.createListViewController(homeViewModel: homeViewModel)
         window?.makeKeyAndVisible()
         
     }
