@@ -8,21 +8,25 @@
 import Foundation
 
 protocol HomeViewModelInputProtocol {
+    /// Perform action when an item is selected
+    func didSelectDisplayitem(index: Int)
+    func showNextPage()
+    func fetchCurrencyInformation()
+}
+
+protocol HomeViewModelOutputProtocol {
     /// Handles the loading indicator based on its state
     var isLoading: Observable<Bool> { get }
     /// Observable error message that is to be shown to user
-    var error: Observable<String> { get }
+    var errorMessage: Observable<String> { get }
     /// Title of the Crypto List Screen
     var screenTitle: String { get }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]> { get }
     
     var cryptoDetails: Observable<CryptoDetails?> { get }
+    subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? { get }
 }
 
-protocol HomeViewModelOutputProtocol {
-    /// Perform action when an item is selected
-    func didSelectDisplayitem(index: Int)
-}
 
 protocol HomeVieWModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputProtocol { }
 
@@ -30,7 +34,6 @@ final class HomeViewModel: HomeVieWModelProtocol {
     private let homeNetworkService: HomeNetworkService
     
     private let items: Observable<DigitalCurrencyDTO?>
-    let errorMessage: Observable<String>
     
     private var totalItems: Int
     private let pageSize: Int
@@ -91,7 +94,7 @@ final class HomeViewModel: HomeVieWModelProtocol {
     /// Handles the loading indicator based on its state
     let isLoading: Observable<Bool> = Observable(false)
     /// Observable error message that is to be shown to user
-    let error: Observable<String> = Observable("")
+    let errorMessage: Observable<String>
     /// Title of the Crypto Details Screen
     var screenTitle: String { "Currency List" }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]>

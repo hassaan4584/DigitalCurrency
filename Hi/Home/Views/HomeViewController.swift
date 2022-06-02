@@ -12,9 +12,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var currencyListTableview: UITableView!
     @IBOutlet weak var infoLabel: UILabel!
     
-    private let homeViewModel: HomeViewModel
+    private let homeViewModel: HomeVieWModelProtocol
     
-    static func createListViewController(homeViewModel: HomeViewModel) -> HomeViewController {
+    static func createListViewController(homeViewModel: HomeVieWModelProtocol) -> HomeViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "HomeViewController") { aCoder in
             return HomeViewController(homeViewModel: homeViewModel, coder: aCoder)
@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return vc
     }
     
-    init?(homeViewModel: HomeViewModel, coder: NSCoder) {
+    init?(homeViewModel: HomeVieWModelProtocol, coder: NSCoder) {
         self.homeViewModel = homeViewModel
         super.init(coder: coder)
     }
@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         currencyListTableview.accessibilityIdentifier = "myUniqueTableViewIdentifier"
     }
     
-    func setupViewModelBindings(viewModel: HomeViewModel) {
+    func setupViewModelBindings(viewModel: HomeVieWModelProtocol) {
         viewModel.displayItems.observe(on: self) { [weak self] _ in self?.updateItems() }
         viewModel.isLoading.observe(on: self) { [weak self] in self?.updateLoading($0) }
         viewModel.errorMessage.observe(on: self) { [weak self] in self?.showErrorMessage($0) }
