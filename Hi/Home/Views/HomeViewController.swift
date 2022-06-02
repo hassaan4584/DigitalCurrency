@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DetailsNavigationCoordinator {
 
     @IBOutlet weak var currencyListTableview: UITableView!
     @IBOutlet weak var infoLabel: UILabel!
@@ -37,15 +37,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.setupViewModelBindings(viewModel: self.homeViewModel)
         self.homeViewModel.fetchCurrencyInformation()
         self.title = self.homeViewModel.screenTitle
+        currencyListTableview.accessibilityIdentifier = "myUniqueTableViewIdentifier"
     }
     
     func setupViewModelBindings(viewModel: HomeViewModel) {
         viewModel.displayItems.observe(on: self) { [weak self] _ in self?.updateItems() }
         viewModel.isLoading.observe(on: self) { [weak self] in self?.updateLoading($0) }
         viewModel.errorMessage.observe(on: self) { [weak self] in self?.showErrorMessage($0) }
+        viewModel.cryptoDetails.observe(on: self) { [weak self] selectedDetails in
+            guard let selectedDetails = selectedDetails else { return }
+            self?.selectCryptoDetails(selectedDetails)
+        }
     }
     
     func updateItems() {
+//        self.currencyListTableview.reloadSections(IndexSet(integer: 0), with: .left)
         self.currencyListTableview.reloadData()
         self.infoLabel.isHidden = true
         self.currencyListTableview.isHidden = false
@@ -67,6 +73,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.infoLabel.text = message
     }
 
+    private func selectCryptoDetails(_ selectedItem: CryptoDetails) {
+        self.navigateToCryptoDetailsVC(viewModel: CryptoDetailViewModel(cryptoItemDetails: selectedItem))
+    }
 
     // MARK: - Tableview
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,12 +95,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCurrencyListTVCell", for: indexPath) as? HomeCurrencyListTVCell else {
             fatalError()
         }
-        cell.currencyNameLabel.text = self.homeViewModel.displayItems.value[indexPath.item].timeStr
+        cell.currencyNameLabel.text = self.homeViewModel[indexPath.item]?.timeStr
         cell.priceLabel.text = "\(indexPath.row)"
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.homeViewModel.didSelectDisplayitem(index: indexPath.item)
     }
     
 

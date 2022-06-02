@@ -57,6 +57,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="AccessibilityIdentifier"/>
                                         <connections>
                                             <outlet property="currencyCodeLabel" destination="Ffg-Gg-Srr" id="oVd-dn-yiw"/>
                                             <outlet property="currencyNameLabel" destination="uaV-E5-RzO" id="apf-cN-ffJ"/>
@@ -70,7 +71,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="7hy-ML-8XA"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MK-n7-gve">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MK-n7-gve">
                                 <rect key="frame" x="10" y="430" width="394" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -79,6 +80,9 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="homeVCMainView">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="7MK-n7-gve" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kbk-cu-xxF"/>
                             <constraint firstItem="3eT-pS-Tys" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="d37-bs-juS"/>

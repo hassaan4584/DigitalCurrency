@@ -7,7 +7,26 @@
 
 import Foundation
 
-final class HomeViewModel {
+protocol HomeViewModelInputProtocol {
+    /// Handles the loading indicator based on its state
+    var isLoading: Observable<Bool> { get }
+    /// Observable error message that is to be shown to user
+    var error: Observable<String> { get }
+    /// Title of the Crypto List Screen
+    var screenTitle: String { get }
+    var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]> { get }
+    
+    var cryptoDetails: Observable<CryptoDetails?> { get }
+}
+
+protocol HomeViewModelOutputProtocol {
+    /// Perform action when an item is selected
+    func didSelectDisplayitem(index: Int)
+}
+
+protocol HomeVieWModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputProtocol { }
+
+final class HomeViewModel: HomeVieWModelProtocol {
     private let homeNetworkService: HomeNetworkService
     
     private let items: Observable<DigitalCurrencyDTO?>
@@ -25,8 +44,10 @@ final class HomeViewModel {
         self.items = Observable(nil)
         self.errorMessage = Observable("")
         self.displayItems = Observable([])
+        self.cryptoDetails = Observable(nil)
     }
     
+    /// Setup data for the next page and update`displayItems` property
     func showNextPage() {
         guard (self.items.value?.timeSeriesDigitalCurrencyDaily.array.count ?? 0) > currentlyShownItems+pageSize-1 else { return }
         let newItems = self.items.value!.timeSeriesDigitalCurrencyDaily.array[currentlyShownItems...currentlyShownItems+pageSize-1]
@@ -54,12 +75,27 @@ final class HomeViewModel {
 
     }
     
+    func didSelectDisplayitem(index: Int) {
+        guard let metadata = self.items.value?.metadata else { return }
+        guard index < self.displayItems.value.count else { return }
+        guard let currencyDetailInfo = self[index] else { return }
+        let selectedCryptoDetails = CryptoDetails(metadata: metadata, currencyDetails: currencyDetailInfo)
+        self.cryptoDetails.value = selectedCryptoDetails
+    }
+    
+    subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? {
+        guard index >= 0, index < self.displayItems.value.count else { return nil }
+        return self.displayItems.value[index]
+    }
+    
     /// Handles the loading indicator based on its state
     let isLoading: Observable<Bool> = Observable(false)
     /// Observable error message that is to be shown to user
     let error: Observable<String> = Observable("")
-    /// Title of the Restaurants List Screen
-    var screenTitle: String { "CurrencyList" }
+    /// Title of the Crypto Details Screen
+    var screenTitle: String { "Currency List" }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]>
+    var cryptoDetails: Observable<CryptoDetails?>
+    
 
 }
