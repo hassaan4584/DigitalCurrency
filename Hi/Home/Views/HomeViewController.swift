@@ -14,9 +14,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private let homeViewModel: HomeVieWModelProtocol
     
+    private static let storyboardIdentifier = "HomeViewController"
+    
+    // MARK: Initializations
     static func createListViewController(homeViewModel: HomeVieWModelProtocol) -> HomeViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "HomeViewController") { aCoder in
+        let vc = storyboard.instantiateViewController(identifier: self.storyboardIdentifier) { aCoder in
             return HomeViewController(homeViewModel: homeViewModel, coder: aCoder)
         }
         return vc
@@ -37,7 +40,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.setupViewModelBindings(viewModel: self.homeViewModel)
         self.homeViewModel.fetchCurrencyInformation()
         self.title = self.homeViewModel.screenTitle
-        currencyListTableview.accessibilityIdentifier = "myUniqueTableViewIdentifier"
     }
     
     func setupViewModelBindings(viewModel: HomeVieWModelProtocol) {
@@ -50,8 +52,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func updateItems() {
-//        self.currencyListTableview.reloadSections(IndexSet(integer: 0), with: .left)
+    // MARK: ViewModel Linking
+    private func updateItems() {
         self.currencyListTableview.reloadData()
         self.infoLabel.isHidden = true
         self.currencyListTableview.isHidden = false

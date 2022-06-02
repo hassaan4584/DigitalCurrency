@@ -66,7 +66,6 @@ final class HomeViewModel: HomeVieWModelProtocol {
         self.homeNetworkService.fetchCurrencyData(function: "DIGITAL_CURRENCY_DAILY", currencyCode: "BTC", marketCode: "USD") { [weak self] digitalCurrencyDto in
             guard let self = self else { return }
             self.isLoading.value = false
-            print(digitalCurrencyDto)
             self.items.value = digitalCurrencyDto
             self.showNextPage()
         } onFailure: { [weak self] err in
