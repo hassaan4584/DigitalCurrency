@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Combine
 @testable import Hi
 
-struct MockNetworkManager: NetworkManagerProtocol {
+class MockNetworkManager: NetworkManagerProtocol {
 
-    private let session: URLSession
-    private let logger: NetworkLoggerProtocol
+    let session: URLSession
+    let logger: NetworkLoggerProtocol
+    var cancellables = Set<AnyCancellable>()
 
     init() {
         let config = URLSessionConfiguration.default
@@ -25,64 +27,6 @@ struct MockNetworkManager: NetworkManagerProtocol {
     init(session: URLSession, logger: NetworkLogger) {
         self.session = session
         self.logger = logger
-    }
-
-    @discardableResult
-    func makeCall<T: Codable> (withEndPoint endpoint: Endpoint, _ completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionDataTask {
-        let request = endpoint.createRequest()
-        self.logger.log(request: request)
-        return self.request(with: request) { result in
-            switch result {
-            case .success((let response, let data)):
-                self.logger.log(responseData: data, response: response)
-                guard response is HTTPURLResponse else {
-                    DispatchQueue.main.async {
-                        completion(.failure(NetworkError.emptyData))
-                    }
-                    return
-                }
-                do {
-                    let decoder = try JSONDecoder.init().decode(T.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(.success(decoder))
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        completion(.failure(NetworkError.generic(error)))
-                    }
-                }
-            case .failure(let err):
-                guard (err as NSError).code != NSURLErrorNotConnectedToInternet else {
-                    DispatchQueue.main.async { completion(.failure(NetworkError.noInternet))}
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    completion(.failure(NetworkError.generic(err)))
-                }
-            }
-        }
-    }
-
-    /// make network request with the given request
-    @discardableResult
-    func request(with urlRequest: URLRequest, _ result: ResultClosure?) -> URLSessionDataTask {
-
-        let task = self.session.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                result?(.failure(error))
-                return
-            }
-            guard let response = response, let data = data, !data.isEmpty else {
-                let error = NetworkError.emptyData
-                result?(.failure(error))
-                return
-            }
-            result?(.success((response, data)))
-        }
-
-        task.resume()
-        return task
     }
 
 }

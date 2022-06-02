@@ -37,12 +37,12 @@ class HomeViewModelTests: XCTestCase {
         }
         
         sut.errorMessage.observe(on: self) { err in
-            XCTFail()
+            XCTFail("Error Received")
         }
         
         sut.fetchCurrencyInformation()
         
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
     
     }
 

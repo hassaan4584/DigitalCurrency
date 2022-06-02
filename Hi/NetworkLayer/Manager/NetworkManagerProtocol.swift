@@ -6,24 +6,52 @@
 //
 
 import Foundation
+import Combine
 
-// MARK: NetworkManagerProtocol
-protocol NetworkManagerProtocol {
+protocol NetworkManagerProtocol: AnyObject {
 
-    /// This function makes the network call for the passed `Endpoint`
+    var session: URLSession { get }
+    var logger: NetworkLoggerProtocol { get }
+    var cancellables: Set<AnyCancellable> { get set }
+
+
+    /// This function makes the network call using Comnine for the passed `Endpoint`
     /// - Returns: The network request of `URLSessionDataTask`
     @discardableResult
-    func makeCall<T: Codable> (withEndPoint endpoint: Endpoint, _ completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionDataTask
+    func makeCall<T: Codable> (withEndPoint endpoint: Endpoint) -> Future<T, NetworkError>
+
 }
 
 extension NetworkManagerProtocol {
-//    /// Helper function to create a URLRequest object using EndPoint
-//    func createRequest(with endpoint: Endpoint) -> URLRequest {
-//        let url = endpoint.baseURL.appendingPathComponent(endpoint.path)
-//        var urlRequest = URLRequest.init(url: url)
-//        urlRequest.allHTTPHeaderFields = endpoint.headers
-//        urlRequest.httpMethod = endpoint.httpMethod
-//        return urlRequest
-//    }
+    func makeCall<T: Codable> (withEndPoint endpoint: Endpoint) -> Future<T, NetworkError> {
+        
+        return Future<T, NetworkError> { promise in
+            let urlRequest = endpoint.createRequest()
+            self.logger.log(request: urlRequest)
+            self.session.dataTaskPublisher(for: urlRequest)
+                .tryMap { (data, response) -> Data in
+                    guard let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
+                        throw NetworkError.emptyData
+                    }
+                    return data
+                }
+                .decode(type: T.self, decoder: JSONDecoder())
+                .receive(on: RunLoop.main)
+                .sink { (completion) in
+                    if case let .failure(error) = completion {
+                        switch error {
+                        case let decodingError as DecodingError:
+                            promise(.failure(NetworkError.generic(decodingError)))
+                        case let apiError as NetworkError:
+                            promise(.failure(apiError))
+                        default:
+                            promise(.failure(NetworkError.generic(error)))
+                        }
+                    }
+                } receiveValue: { decodedObject in
+                    promise(.success(decodedObject))
+                }
+                .store(in: &self.cancellables)
+        }
+    }
 }
-
