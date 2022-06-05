@@ -25,15 +25,17 @@ class HomeVCIntegrationTests: XCTestCase {
     }
 
     func testHomeVC_whenEverythingIsCorrect_dataOnHomeShouldCorrectlyPopulate() throws {
+        // Arrange
         let expectation = expectation(description: "History Expectation")
+
+        // Aseert + Act
         homeViewModel.displayItems.observe(on: self) { _ in
             XCTAssertEqual(self.homeViewModel.displayItems.value.count, 10)
             expectation.fulfill()
         }
-        homeViewModel.errorMessage.observe(on: self) { err in
-            XCTFail()
+        homeViewModel.errorMessage.observe(on: self) { _ in
+            XCTFail("Should not have received any error")
         }
         wait(for: [expectation], timeout: 10.0)
-
     }
 }

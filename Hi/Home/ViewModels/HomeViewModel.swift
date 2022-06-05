@@ -10,23 +10,25 @@ import Foundation
 final class HomeViewModel: HomeViewModelProtocol {
     /// Network service to fetch History data
     private let homeNetworkService: HomeNetworkService
-    private let items: Observable<DigitalCurrencyDTO?>
+    /// object contain all the information from server
+    private var digitalCurrencyData: DigitalCurrencyDTO?
+    /// Sorted items list as per the selected sorting technique
     private var sortedItems: [TimeSeriesDigitalCurrencyDaily]
-    private var totalItems: Int
+    /// Page Size used for pagination
     private let pageSize: Int
+    /// Total items currently shown
     private var currentlyShownItems: Int
 
     init(homeNetworkService: HomeNetworkService, pageSize: Int=10, sortingMethod: CurrencyHistorySorting = .dateDescending) {
         self.homeNetworkService = homeNetworkService
         self.pageSize = pageSize
-        self.totalItems = 0
         self.currentlyShownItems = 0
-        self.items = Observable(nil)
+        self.digitalCurrencyData = nil
         self.errorMessage = Observable("")
         self.displayItems = Observable([])
         self.cryptoDetails = Observable(nil)
         self.currentSorting = sortingMethod
-        self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array) ?? []
+        self.sortedItems = self.digitalCurrencyData?.timeSeriesDigitalCurrencyDaily.array ?? []
         self.sortingTextFieldPlaceholder = Observable("")
     }
 
@@ -35,8 +37,9 @@ final class HomeViewModel: HomeViewModelProtocol {
         self.displayItems.value.removeAll()
     }
 
+    /// Returns the data in the respective sorted order
     private func getData(with sortingMethod: CurrencyHistorySorting) -> [TimeSeriesDigitalCurrencyDaily] {
-        guard let arr = self.items.value?.timeSeriesDigitalCurrencyDaily.array else { return [] }
+        guard let arr = self.digitalCurrencyData?.timeSeriesDigitalCurrencyDaily.array else { return [] }
 
         switch sortingMethod {
         case .dateAscending:
@@ -60,15 +63,13 @@ final class HomeViewModel: HomeViewModelProtocol {
         currentlyShownItems += pageSize
     }
 
+    /// Fetch data from server
     func fetchCurrencyInformation() {
-        let currencyData = UnitTestUtils.getCurrencyData(from: "digitalCurrency_btc_usd")
-        MockURLProtocol.stubResponseData = currencyData
-
         self.isLoading.value = true
         self.homeNetworkService.fetchCurrencyData(function: "DIGITAL_CURRENCY_DAILY", currencyCode: "BTC", marketCode: "USD") { [weak self] digitalCurrencyDto in
             guard let self = self else { return }
             self.isLoading.value = false
-            self.items.value = digitalCurrencyDto
+            self.digitalCurrencyData = digitalCurrencyDto
             self.sortedItems = self.getData(with: self.currentSorting)
             self.showNextPage()
         } onFailure: { [weak self] err in
@@ -81,7 +82,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     func didSelectDisplayitem(index: Int) {
         guard index < self.displayItems.value.count else { return }
         guard let currencyDetailInfo = self[index] else { return }
-        guard let metadata = self.items.value?.metadata else { return }
+        guard let metadata = self.digitalCurrencyData?.metadata else { return }
         let selectedCryptoDetails = CryptoDetails(metadata: metadata, currencyDetails: currencyDetailInfo)
         self.cryptoDetails.value = selectedCryptoDetails
     }
@@ -115,5 +116,4 @@ final class HomeViewModel: HomeViewModelProtocol {
         return [.dateDescending, .dateAscending, .marketCapDescending, .marketCapAscending]
     }
     var sortingTextFieldPlaceholder: Observable<String>
-
 }

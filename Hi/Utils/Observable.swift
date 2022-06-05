@@ -34,11 +34,7 @@ public final class Observable<Value> {
 
     private func notifyObservers() {
         for observer in observers {
-            if Thread.isMainThread {
-                observer.block(self.value)
-            } else {
-                DispatchQueue.main.async { observer.block(self.value) }
-            }
+            DispatchQueue.main.async { observer.block(self.value) }
         }
     }
 }

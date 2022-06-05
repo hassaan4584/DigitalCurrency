@@ -182,6 +182,7 @@ class HomeViewModelTests: XCTestCase {
 
     /// Testing the subscript notation for accessing data for different cases
     func testSubscriptNotation_whenDataIsAccessedUsingSubscriptNotation_correctDataBeReturned() throws {
+        // Arrange
         let sortingMethod = CurrencyHistorySorting.dateAscending
         sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()), pageSize: 10, sortingMethod: sortingMethod)
         let sortingExpectation = self.expectation(description: "Subscript Expectation")
@@ -199,6 +200,7 @@ class HomeViewModelTests: XCTestCase {
     }
 
     func testSelectedItem_whenFirstRowIsSelected_DetailsItemCorrectlyUpdates() throws {
+        // Arrange
         let sortingMethod = CurrencyHistorySorting.dateDescending
         sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()), pageSize: 10, sortingMethod: sortingMethod)
         let sortingExpectation = self.expectation(description: "Selected Item Expectation")
@@ -219,6 +221,7 @@ class HomeViewModelTests: XCTestCase {
     }
 
     func testSelectedItem_WhenThereIsNoData_DetailsItemShouldBeNil() throws {
+        // Arrange
         let sortingMethod = CurrencyHistorySorting.dateDescending
         sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()), pageSize: 10, sortingMethod: sortingMethod)
         let currencyData = UnitTestUtils.getCurrencyData(from: digitalCurrencyBtcUsd)
@@ -229,6 +232,7 @@ class HomeViewModelTests: XCTestCase {
         XCTAssertNil(self.sut.cryptoDetails.value)
     }
 
+    /// Test api error
     func testApiError_WhenApiThrowsError_ErrorObserverIsCalled() throws {
         sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()), pageSize: 10, sortingMethod: .dateDescending)
         let errorExpectation = self.expectation(description: "Error Message Expectation")
@@ -242,6 +246,25 @@ class HomeViewModelTests: XCTestCase {
 
         sut.fetchCurrencyInformation()
         self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
 
+    /// Test the available sorting options present in the view model.
+    func testAvailableSortingOptions_WhenViewModelIsCreated_AllSortingOptionsBePresent() throws {
+        // Arrange
+        sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()), pageSize: 10, sortingMethod: .dateDescending)
+
+        // Act
+        let sortingCount = sut.availableSortingOptions.count
+        let isDateAscPresent = (sut.availableSortingOptions.filter { $0 == .dateAscending }).count == 1
+        let isDateDescPresent = (sut.availableSortingOptions.filter { $0 == .dateDescending }).count == 1
+        let isMarketAscPresent = (sut.availableSortingOptions.filter { $0 == .marketCapAscending }).count == 1
+        let isMarketDescPresent = (sut.availableSortingOptions.filter { $0 == .marketCapDescending }).count == 1
+
+        // Assert
+        XCTAssertEqual(sortingCount, 4)
+        XCTAssertTrue(isDateAscPresent)
+        XCTAssertTrue(isDateDescPresent)
+        XCTAssertTrue(isMarketAscPresent)
+        XCTAssertTrue(isMarketDescPresent)
     }
 }
