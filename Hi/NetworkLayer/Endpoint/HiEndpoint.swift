@@ -44,21 +44,5 @@ case query(queryParams: QueryParams)
             return RequestType.query(queryParams)
         }
     }
-    /// Helper function to create a URLRequest object using EndPoint
-    func createRequest() -> URLRequest {
-        let url = self.baseURL.appendingPathComponent(self.path)
-        var urlRequest = URLRequest.init(url: url)
-        urlRequest.allHTTPHeaderFields = self.headers
-        urlRequest.httpMethod = self.httpMethod
-
-        switch self.requestType {
-        case .simple:
-            break
-        case .query(let queryParams):
-            RequestEncoder().encodeRequest(urlRequest: &urlRequest, queryParams)
-        }
-
-        return urlRequest
-    }
 
 }
