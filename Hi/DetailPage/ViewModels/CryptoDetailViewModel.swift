@@ -7,34 +7,21 @@
 
 import Foundation
 
-struct CryptoDetails {
-    let metadata: DigitalCurrencyMetadata
-    let currencyDetails: TimeSeriesDigitalCurrencyDaily
-}
-
-protocol CryptoDetailViewModelOutputProtocol {
-    var cryptoItem: CryptoDetails { get }
-    var screenTitle: String { get }
-    var detailItemsList: [CurrencyDetailsItem] { get }
-}
-protocol CryptoDetailViewModelProtocol: CryptoDetailViewModelOutputProtocol { }
-
 final class CryptoDetailViewModel: CryptoDetailViewModelProtocol {
-    let cryptoItem: CryptoDetails
-    var detailItemsList: [CurrencyDetailsItem]
     init( cryptoItemDetails: CryptoDetails) {
         self.cryptoItem = cryptoItemDetails
 
-        self.detailItemsList = []
+        var detailItemsList = [CurrencyDetailsItem]()
         let sortedKeys =  Array(cryptoItem.currencyDetails.dictionary.keys).sorted(by: <)
         for key in sortedKeys {
             guard let value = cryptoItem.currencyDetails.dictionary[key] else { continue }
-            self.detailItemsList.append(CurrencyDetailsItem(key: key, value: value))
+            detailItemsList.append(CurrencyDetailsItem(key: key, value: value))
         }
-
+        self.detailItemsList = detailItemsList
     }
 
     // MARK: CryptoDetailViewModelOutputProtocol
     var screenTitle: String { "\(self.cryptoItem.metadata.the3DigitalCurrencyName) Details" }
-    //
+    let cryptoItem: CryptoDetails
+    let detailItemsList: [CurrencyDetailsItem]
 }

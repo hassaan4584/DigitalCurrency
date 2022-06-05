@@ -20,6 +20,10 @@
 		1A8B74A1284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74A0284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift */; };
 		1A8B74A6284CC1C10094FD40 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74A5284CC1C10094FD40 /* AppConstants.swift */; };
 		1A8B74A9284CE2D90094FD40 /* CurrencyDetailsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74A8284CE2D90094FD40 /* CurrencyDetailsItem.swift */; };
+		1A8B74AC284CE90C0094FD40 /* CryptoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74AB284CE90C0094FD40 /* CryptoDetails.swift */; };
+		1A8B74AE284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74AD284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift */; };
+		1A8B74B0284CEB250094FD40 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74AF284CEB250094FD40 /* HomeViewModelProtocol.swift */; };
+		1A8B74B2284CECAE0094FD40 /* CurrencyHistorySorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74B1284CECAE0094FD40 /* CurrencyHistorySorting.swift */; };
 		1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */; };
 		1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */; };
 		1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */; };
@@ -83,6 +87,10 @@
 		1A8B74A0284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListDetailsItemTVCell.swift; sourceTree = "<group>"; };
 		1A8B74A5284CC1C10094FD40 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		1A8B74A8284CE2D90094FD40 /* CurrencyDetailsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsItem.swift; sourceTree = "<group>"; };
+		1A8B74AB284CE90C0094FD40 /* CryptoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetails.swift; sourceTree = "<group>"; };
+		1A8B74AD284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		1A8B74AF284CEB250094FD40 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
+		1A8B74B1284CECAE0094FD40 /* CurrencyHistorySorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHistorySorting.swift; sourceTree = "<group>"; };
 		1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkService.swift; sourceTree = "<group>"; };
 		1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyMetadata.swift; sourceTree = "<group>"; };
@@ -173,6 +181,7 @@
 		1A8B748D284908270094FD40 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1A8B74AD284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift */,
 				1A8B748F284908770094FD40 /* CryptoDetailViewModel.swift */,
 			);
 			path = ViewModels;
@@ -198,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				1A8B74A8284CE2D90094FD40 /* CurrencyDetailsItem.swift */,
+				1A8B74AB284CE90C0094FD40 /* CryptoDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,7 +373,9 @@
 		1ACE5A062845510700A102C1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1A8B74AF284CEB250094FD40 /* HomeViewModelProtocol.swift */,
 				1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */,
+				1A8B74B1284CECAE0094FD40 /* CurrencyHistorySorting.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -561,12 +573,14 @@
 				1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */,
 				1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */,
 				1ACE59E528452BDD00A102C1 /* NetworkManager.swift in Sources */,
+				1A8B74B0284CEB250094FD40 /* HomeViewModelProtocol.swift in Sources */,
 				1A8B7490284908770094FD40 /* CryptoDetailViewModel.swift in Sources */,
 				1ABBC9F828469C980026EFA9 /* UnitTestUtils.swift in Sources */,
 				1ACE5A0328454F5E00A102C1 /* DotsLoadingIndicator.swift in Sources */,
 				1ABBC9F628469C770026EFA9 /* MockURLProtocol.swift in Sources */,
 				1A8B7492284908900094FD40 /* CryptoDetailVC.swift in Sources */,
 				1ACE59EA28452C8200A102C1 /* HttpMethod.swift in Sources */,
+				1A8B74B2284CECAE0094FD40 /* CurrencyHistorySorting.swift in Sources */,
 				1ABBC9F528469C720026EFA9 /* MockNetworkManager.swift in Sources */,
 				1A8B74882847DE0E0094FD40 /* RequestEncoder.swift in Sources */,
 				1A8B74A1284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift in Sources */,
@@ -575,6 +589,7 @@
 				1A8B74A9284CE2D90094FD40 /* CurrencyDetailsItem.swift in Sources */,
 				1ACE59EC28452CBB00A102C1 /* HiEndpoint.swift in Sources */,
 				1A8B74A6284CC1C10094FD40 /* AppConstants.swift in Sources */,
+				1A8B74AC284CE90C0094FD40 /* CryptoDetails.swift in Sources */,
 				1ABBC9F428466C290026EFA9 /* HomeCurrencyListTVCell.swift in Sources */,
 				1A8B749A284915BA0094FD40 /* DetailsNavigationCoordinator.swift in Sources */,
 				1ACE59EE284530C200A102C1 /* NetworkLogger.swift in Sources */,
@@ -583,6 +598,7 @@
 				1A8B74852847DD7C0094FD40 /* RequestEncodingProtocol.swift in Sources */,
 				1ACE59F52845315000A102C1 /* NetworkLoggerProtocol.swift in Sources */,
 				1ACE59B32844B20900A102C1 /* SceneDelegate.swift in Sources */,
+				1A8B74AE284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift in Sources */,
 				1ACE59F0284530D100A102C1 /* NetworkError.swift in Sources */,
 				1A8B748A2847DF480094FD40 /* RequestType.swift in Sources */,
 			);

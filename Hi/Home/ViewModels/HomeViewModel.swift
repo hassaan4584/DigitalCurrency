@@ -7,58 +7,9 @@
 
 import Foundation
 
-protocol HomeViewModelInputProtocol {
-    /// Perform action when an item is selected
-    func didSelectDisplayitem(index: Int)
-    func showNextPage()
-    func fetchCurrencyInformation()
-    func updateSorting(with newValue: CurrencyHistorySorting)
-}
-
-protocol HomeViewModelOutputProtocol {
-    /// Handles the loading indicator based on its state
-    var isLoading: Observable<Bool> { get }
-    /// Observable error message that is to be shown to user
-    var errorMessage: Observable<String> { get }
-    /// Title of the Crypto List Screen
-    var screenTitle: String { get }
-    var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]> { get }
-
-    var currentSorting: CurrencyHistorySorting { get }
-
-    var cryptoDetails: Observable<CryptoDetails?> { get }
-
-    var sortingTextFieldPlaceholder: Observable<String> { get }
-    var availableSortingOptions: [CurrencyHistorySorting] { get }
-    subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? { get }
-}
-
-protocol HomeViewModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputProtocol { }
-
-enum CurrencyHistorySorting: String {
-    case dateAscending
-    case dateDescending
-    case marketCapAscending
-    case marketCapDescending
-
-    /// Name to be shown in the text field
-    var sortingName: String {
-        switch self {
-        case .dateAscending:
-            return "Sort by Date - Ascending"
-        case .dateDescending:
-            return "Sort by Date - Descending"
-        case .marketCapAscending:
-            return "Sort by Market Cap - Ascending"
-        case .marketCapDescending:
-            return "Sort by Market Cap - Descending"
-        }
-    }
-}
-
 final class HomeViewModel: HomeViewModelProtocol {
+    /// Network service to fetch History data
     private let homeNetworkService: HomeNetworkService
-
     private let items: Observable<DigitalCurrencyDTO?>
     private var sortedItems: [TimeSeriesDigitalCurrencyDaily]
     private var totalItems: Int
@@ -83,6 +34,9 @@ final class HomeViewModel: HomeViewModelProtocol {
         self.currentlyShownItems = 0
         self.displayItems.value.removeAll()
     }
+
+    // MARK: HomeViewModelInputProtocol
+
     /// Setup data for the next page and update`displayItems` property
     func showNextPage() {
         guard (self.sortedItems.count) > currentlyShownItems+pageSize-1 else { return }
@@ -110,7 +64,6 @@ final class HomeViewModel: HomeViewModelProtocol {
         }
     }
 
-    // MARK: HomeViewModelInputProtocol
     func didSelectDisplayitem(index: Int) {
         guard let metadata = self.items.value?.metadata else { return }
         guard index < self.displayItems.value.count else { return }
@@ -147,7 +100,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     let isLoading: Observable<Bool> = Observable(false)
     /// Observable error message that is to be shown to user
     let errorMessage: Observable<String>
-    /// Title of the Crypto Details Screen
+    /// Title of the History List Screen
     var screenTitle: String { "Bitcoin History" }
     /// Datasource for the elements to display data from
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]>
