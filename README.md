@@ -3,10 +3,10 @@
 
 ### What does the app support/contain? ###
 
-* The main History Screen supports pagination.
-* Tableviews use diffable datasource to populate data
+* The main History Screen supports pagination and details page contains simple stackview and table view to display information.
+* Tableviews use [UITableViewDiffableDataSource](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasource) to populate data
 * A custom Loading animation to indicate network activity.
-* A network layer using Combine framework for making api calls.
+* A network layer using [Combine framework](https://developer.apple.com/documentation/combine) for making api calls.
 * The app uses MVVM architecture pattern.
 * A simple Observable class used for Reactive Programming.
 * Coordinator class to coordinate UI navigations.
