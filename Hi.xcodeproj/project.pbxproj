@@ -32,6 +32,7 @@
 		1A8B74C6284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C5284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift */; };
 		1A8B74C7284D487D0094FD40 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F82845376400A102C1 /* MockURLProtocol.swift */; };
 		1A8B74C8284D487D0094FD40 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F72845376400A102C1 /* MockNetworkManager.swift */; };
+		1A8B74CA284D4C350094FD40 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B74C9284D4C350094FD40 /* README.md */; };
 		1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */; };
 		1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */; };
 		1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */; };
@@ -99,10 +100,10 @@
 		1A8B74B5284CF3530094FD40 /* digitalCurrency_btc_usd.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = digitalCurrency_btc_usd.json; sourceTree = "<group>"; };
 		1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCIntegrationTests.swift; sourceTree = "<group>"; };
 		1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCTests.swift; sourceTree = "<group>"; };
-		1A8B74C0284D3A520094FD40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A8B74C1284D43260094FD40 /* DigitalCurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyDTO.swift; sourceTree = "<group>"; };
 		1A8B74C3284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDigitalCurrencyDailyDTO.swift; sourceTree = "<group>"; };
 		1A8B74C5284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDigitalCurrencyDaily.swift; sourceTree = "<group>"; };
+		1A8B74C9284D4C350094FD40 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkService.swift; sourceTree = "<group>"; };
 		1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyMetadata.swift; sourceTree = "<group>"; };
@@ -253,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				1ACE59AF2844B20900A102C1 /* Hi */,
+				1A8B74C9284D4C350094FD40 /* README.md */,
 				1ACE59C62844B20C00A102C1 /* HiTests */,
 				1ACE59D02844B20C00A102C1 /* HiUITests */,
 				1ACE59AE2844B20900A102C1 /* Products */,
@@ -278,7 +280,6 @@
 				1A8B748B2849080C0094FD40 /* DetailPage */,
 				1ACE59E028452B9E00A102C1 /* NetworkLayer */,
 				1ACE59FD28454ED200A102C1 /* Utils */,
-				1A8B74C0284D3A520094FD40 /* README.md */,
 			);
 			path = Hi;
 			sourceTree = "<group>";
@@ -552,6 +553,7 @@
 			files = (
 				1ACE59BD2844B20C00A102C1 /* LaunchScreen.storyboard in Resources */,
 				1A8B7494284908A40094FD40 /* CryptoDetails.storyboard in Resources */,
+				1A8B74CA284D4C350094FD40 /* README.md in Resources */,
 				1ACE59BA2844B20C00A102C1 /* Assets.xcassets in Resources */,
 				1ACE59B82844B20900A102C1 /* Home.storyboard in Resources */,
 			);
