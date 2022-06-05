@@ -100,6 +100,7 @@
 		1A8B74B7284CF3C40094FD40 /* ErrorLimitExceed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ErrorLimitExceed.json; sourceTree = "<group>"; };
 		1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCIntegrationTests.swift; sourceTree = "<group>"; };
 		1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCTests.swift; sourceTree = "<group>"; };
+		1A8B74C0284D3A520094FD40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkService.swift; sourceTree = "<group>"; };
 		1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyMetadata.swift; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 				1A8B748B2849080C0094FD40 /* DetailPage */,
 				1ACE59E028452B9E00A102C1 /* NetworkLayer */,
 				1ACE59FD28454ED200A102C1 /* Utils */,
+				1A8B74C0284D3A520094FD40 /* README.md */,
 			);
 			path = Hi;
 			sourceTree = "<group>";
