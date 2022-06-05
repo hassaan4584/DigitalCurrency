@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DetailsNavigationCoordinator {
+class HomeViewController: UIViewController, DetailsNavigationCoordinator {
 
     @IBOutlet weak var currencyListTableview: UITableView!
     @IBOutlet weak var infoLabel: UILabel!
@@ -39,22 +39,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         self.setupViewModelBindings(viewModel: self.homeViewModel)
         self.homeViewModel.fetchCurrencyInformation()
         self.title = self.homeViewModel.screenTitle
+        self.setupViews()
+    }
+    
+    private func setupViews() {
         currencyListTableview.rowHeight = UITableView.automaticDimension
         currencyListTableview.estimatedRowHeight = 56
         
         self.sortTextField.inputView = pickerView
         pickerView.delegate = self
         pickerView.dataSource = self
+        self.sortTextField.placeholder = self.homeViewModel.currentSorting.sortingName
     }
     
-    func setupViewModelBindings(viewModel: HomeViewModelProtocol) {
+    private func setupViewModelBindings(viewModel: HomeViewModelProtocol) {
         viewModel.displayItems.observe(on: self) { [weak self] _ in self?.updateItems() }
         viewModel.isLoading.observe(on: self) { [weak self] in self?.updateLoading($0) }
         viewModel.errorMessage.observe(on: self) { [weak self] in self?.showErrorMessage($0) }
+        viewModel.sortingTextFieldPlaceholder.observe(on: self) { [weak self] in self?.updateSortingTextFieldPlaceholder($0) }
         viewModel.cryptoDetails.observe(on: self) { [weak self] selectedDetails in
             guard let selectedDetails = selectedDetails else { return }
             self?.selectCryptoDetails(selectedDetails)
@@ -87,10 +93,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func selectCryptoDetails(_ selectedItem: CryptoDetails) {
         self.navigateToCryptoDetailsVC(viewModel: CryptoDetailViewModel(cryptoItemDetails: selectedItem))
     }
+    
+    private func updateSortingTextFieldPlaceholder(_ newSortingName: String) {
+        self.sortTextField.placeholder = newSortingName
+    }
+}
 
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Tableview
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("Number of sections")
         return 1
     }
     
@@ -100,12 +111,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if self.homeViewModel.displayItems.value.count-1 == indexPath.row {
-            print("new request started")
             self.homeViewModel.showNextPage()
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCurrencyListTVCell", for: indexPath) as? HomeCurrencyListTVCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCurrencyListTVCell.reuseIdentifier, for: indexPath) as? HomeCurrencyListTVCell else {
             fatalError()
         }
         if let dailyData = self.homeViewModel[indexPath.item] {
@@ -127,6 +137,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
+// MARK: - PickerView
 extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -143,7 +154,6 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard row >= 0, row < homeViewModel.availableSortingOptions.count else { return }
-        self.sortTextField.placeholder = self.homeViewModel.availableSortingOptions[row].sortingName
         self.homeViewModel.updateSorting(with: self.homeViewModel.availableSortingOptions[row])
     }
     

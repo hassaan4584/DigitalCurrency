@@ -16,8 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2p-yZ-SpQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sort By" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbT-ev-try">
+                                        <rect key="frame" x="15" y="5" width="384" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dbT-ev-try" secondAttribute="trailing" constant="15" id="0SW-eE-NlN"/>
+                                    <constraint firstAttribute="height" constant="50" id="B0O-Ua-aXi"/>
+                                    <constraint firstAttribute="bottom" secondItem="dbT-ev-try" secondAttribute="bottom" constant="5" id="IfD-JD-ic6"/>
+                                    <constraint firstItem="dbT-ev-try" firstAttribute="leading" secondItem="J2p-yZ-SpQ" secondAttribute="leading" constant="15" id="L4l-4z-dDj"/>
+                                    <constraint firstItem="dbT-ev-try" firstAttribute="top" secondItem="J2p-yZ-SpQ" secondAttribute="top" constant="5" id="M7b-09-Vxt"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="56" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3eT-pS-Tys">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCurrencyListTVCell" id="NAe-9P-72e" customClass="HomeCurrencyListTVCell" customModule="Hi" customModuleProvider="target">
@@ -61,23 +79,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2p-yZ-SpQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sort By" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbT-ev-try">
-                                        <rect key="frame" x="15" y="5" width="384" height="90"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dbT-ev-try" secondAttribute="trailing" constant="15" id="0SW-eE-NlN"/>
-                                    <constraint firstAttribute="bottom" secondItem="dbT-ev-try" secondAttribute="bottom" constant="5" id="IfD-JD-ic6"/>
-                                    <constraint firstItem="dbT-ev-try" firstAttribute="leading" secondItem="J2p-yZ-SpQ" secondAttribute="leading" constant="15" id="L4l-4z-dDj"/>
-                                    <constraint firstItem="dbT-ev-try" firstAttribute="top" secondItem="J2p-yZ-SpQ" secondAttribute="top" constant="5" id="M7b-09-Vxt"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -90,7 +91,6 @@
                             <constraint firstItem="7MK-n7-gve" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kbk-cu-xxF"/>
                             <constraint firstItem="J2p-yZ-SpQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MnD-M2-xLc"/>
                             <constraint firstItem="J2p-yZ-SpQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ROd-oz-WoB"/>
-                            <constraint firstItem="3eT-pS-Tys" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="d37-bs-juS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3eT-pS-Tys" secondAttribute="bottom" id="dYI-Bc-ESp"/>
                             <constraint firstItem="3eT-pS-Tys" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gDq-DJ-WqW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3eT-pS-Tys" secondAttribute="trailing" id="jVh-e4-aeC"/>

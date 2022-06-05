@@ -28,6 +28,7 @@ protocol HomeViewModelOutputProtocol {
     
     var cryptoDetails: Observable<CryptoDetails?> { get }
     
+    var sortingTextFieldPlaceholder: Observable<String> { get }
     var availableSortingOptions: [CurrencyHistorySorting] { get }
     subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? { get }
 }
@@ -39,6 +40,7 @@ enum CurrencyHistorySorting: String {
     case dateAscending
     case dateDescending
     
+    /// Name to be shown in the text field
     var sortingName: String {
         switch self {
         case .dateAscending:
@@ -69,6 +71,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         self.cryptoDetails = Observable(nil)
         self.currentSorting = CurrencyHistorySorting.dateDescending
         self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
+        self.sortingTextFieldPlaceholder = Observable("")
     }
     
     private func resetPagination() {
@@ -122,6 +125,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         self.resetPagination()
         self.showNextPage()
         self.currentSorting = newValue
+        self.sortingTextFieldPlaceholder.value = newValue.sortingName
     }
     
     subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? {
@@ -141,5 +145,6 @@ final class HomeViewModel: HomeViewModelProtocol {
     var availableSortingOptions: [CurrencyHistorySorting] {
         return [.dateAscending, .dateDescending]
     }
+    var sortingTextFieldPlaceholder: Observable<String>
 
 }

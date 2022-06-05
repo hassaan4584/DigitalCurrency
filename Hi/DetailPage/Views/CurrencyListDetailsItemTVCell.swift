@@ -12,6 +12,7 @@ class CurrencyListDetailsItemTVCell: UITableViewCell {
     @IBOutlet weak var keyLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
 
+    static let reuseIdentifier = "CurrencyListDetailsItemTVCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

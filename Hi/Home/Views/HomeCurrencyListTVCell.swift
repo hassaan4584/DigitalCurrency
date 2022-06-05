@@ -11,6 +11,7 @@ class HomeCurrencyListTVCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     
+    static let reuseIdentifier = "HomeCurrencyListTVCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

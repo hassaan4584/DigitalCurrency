@@ -22,6 +22,7 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private static let storyboardIdentifier = "CryptoDetailVC"
     
+    // MARK: - Initialization
     static func createCryptoDetailsScreen(viewModel: CryptoDetailViewModelProtocol) -> CryptoDetailVC {
         let storyboard = UIStoryboard(name: "CryptoDetails", bundle: nil)
         let detailsVC = storyboard.instantiateViewController(identifier: self.storyboardIdentifier) { aCoder in
@@ -58,12 +59,13 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.lastUpdatedTimezoneLabel.text = "(\(metadata.the7TimeZone))"
     }
     
+    // MARK: - Tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cryptoDetailsViewModel.detailItemsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyListDetailsItemTVCell", for: indexPath) as? CurrencyListDetailsItemTVCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyListDetailsItemTVCell.reuseIdentifier, for: indexPath) as? CurrencyListDetailsItemTVCell else { fatalError() }
         
         let data = self.cryptoDetailsViewModel.detailItemsList[indexPath.row]
         cell.setCellData(key: data.key, value: data.value)
