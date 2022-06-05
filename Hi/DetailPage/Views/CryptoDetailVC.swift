@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CryptoDetailVC: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var digitalCurrencyNameLabel: UILabel!
     @IBOutlet weak var digitalCurrencyCodeLabel: UILabel!
@@ -18,6 +18,7 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var currencyDetailsTableview: UITableView!
     
+    private var datasource: UITableViewDiffableDataSource<Int, CurrencyDetailsItem>?
     private let cryptoDetailsViewModel: CryptoDetailViewModelProtocol
     
     private static let storyboardIdentifier = "CryptoDetailVC"
@@ -44,10 +45,20 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.applySnapshot()
+    }
+    
+    func setupViews() {
         self.title = self.cryptoDetailsViewModel.screenTitle
+        self.configureDatasource()
         self.updateViews(with: self.cryptoDetailsViewModel.cryptoItem.metadata)
-        self.currencyDetailsTableview.estimatedRowHeight = 70
-        self.currencyDetailsTableview.rowHeight = UITableView.automaticDimension
+        self.currencyDetailsTableview.delegate = self
     }
     
     func updateViews(with metadata: DigitalCurrencyMetadata) {
@@ -60,22 +71,24 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // MARK: - Tableview
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cryptoDetailsViewModel.detailItemsList.count
+    
+    private func configureDatasource() {
+        let datasource = UITableViewDiffableDataSource<Int, CurrencyDetailsItem>(tableView: currencyDetailsTableview) { tableView, indexPath, itemIdentifier in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyListDetailsItemTVCell.reuseIdentifier, for: indexPath) as? CurrencyListDetailsItemTVCell else { fatalError() }
+            cell.setCellData(key: itemIdentifier.key, value: itemIdentifier.value)
+            return cell
+        }
+        self.datasource = datasource
+        self.currencyDetailsTableview.delegate = self
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyListDetailsItemTVCell.reuseIdentifier, for: indexPath) as? CurrencyListDetailsItemTVCell else { fatalError() }
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, CurrencyDetailsItem>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(self.cryptoDetailsViewModel.detailItemsList)
+        datasource?.apply(snapshot, animatingDifferences: true)
+    }
         
-        let data = self.cryptoDetailsViewModel.detailItemsList[indexPath.row]
-        cell.setCellData(key: data.key, value: data.value)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }

@@ -59,7 +59,7 @@ struct DigitalCurrencyMetadata: Codable {
 
 
 // MARK: - TimeSeriesDigitalCurrencyDaily
-struct TimeSeriesDigitalCurrencyDaily: Codable {
+struct TimeSeriesDigitalCurrencyDaily: Codable, Hashable {
     
     let dictionary: [String: String]
     let dateStr: String

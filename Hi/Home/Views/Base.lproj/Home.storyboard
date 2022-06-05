@@ -89,10 +89,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="nbZ-uV-gQX"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7hy-ML-8XA"/>
-                                </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MK-n7-gve">
                                 <rect key="frame" x="10" y="430" width="394" height="36"/>

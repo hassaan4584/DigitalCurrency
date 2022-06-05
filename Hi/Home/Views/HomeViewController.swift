@@ -15,6 +15,8 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     
     private let pickerView: UIPickerView
     private let homeViewModel: HomeViewModelProtocol
+    private var dataSource: UITableViewDiffableDataSource<Int, TimeSeriesDigitalCurrencyDaily>?
+
     
     private static let storyboardIdentifier = "HomeViewController"
     
@@ -43,21 +45,20 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
         self.setupViews()
         self.setupViewModelBindings(viewModel: self.homeViewModel)
         self.homeViewModel.fetchCurrencyInformation()
-        self.title = self.homeViewModel.screenTitle
     }
     
     private func setupViews() {
-        currencyListTableview.rowHeight = UITableView.automaticDimension
-        currencyListTableview.estimatedRowHeight = 91
+        self.title = self.homeViewModel.screenTitle
+        self.sortTextField.placeholder = self.homeViewModel.currentSorting.sortingName
         
+        self.configureDataSource()
         self.sortTextField.inputView = pickerView
         pickerView.delegate = self
         pickerView.dataSource = self
-        self.sortTextField.placeholder = self.homeViewModel.currentSorting.sortingName
     }
     
     private func setupViewModelBindings(viewModel: HomeViewModelProtocol) {
-        viewModel.displayItems.observe(on: self) { [weak self] _ in self?.updateItems() }
+        viewModel.displayItems.observe(on: self) { [weak self] in self?.updateItems($0) }
         viewModel.isLoading.observe(on: self) { [weak self] in self?.updateLoading($0) }
         viewModel.errorMessage.observe(on: self) { [weak self] in self?.showErrorMessage($0) }
         viewModel.sortingTextFieldPlaceholder.observe(on: self) { [weak self] in self?.updateSortingTextFieldPlaceholder($0) }
@@ -68,10 +69,14 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     }
     
     // MARK: ViewModel Linking
-    private func updateItems() {
-        self.currencyListTableview.reloadData()
+    private func updateItems(_ items: [TimeSeriesDigitalCurrencyDaily]) {
         self.infoLabel.isHidden = true
         self.currencyListTableview.isHidden = false
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Int, TimeSeriesDigitalCurrencyDaily>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(items, toSection: 0)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
     /// Based on `shouldShowLoader`, this function will show/hide loader
@@ -99,14 +104,17 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    // MARK: - Tableview
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+// MARK: - Tableview Delegate
+extension HomeViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.homeViewModel.displayItems.value.count
+    private func configureDataSource() {
+        let dataSource = UITableViewDiffableDataSource<Int, TimeSeriesDigitalCurrencyDaily>(tableView: self.currencyListTableview) { tableView, indexPath, itemIdentifier in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCurrencyListTVCell.reuseIdentifier, for: indexPath) as? HomeCurrencyListTVCell else { fatalError() }
+            cell.setCellData(currencyInfo: itemIdentifier)
+            return cell
+        }
+        self.dataSource = dataSource
+        self.currencyListTableview.delegate = self
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -114,15 +122,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.homeViewModel.showNextPage()
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCurrencyListTVCell.reuseIdentifier, for: indexPath) as? HomeCurrencyListTVCell else {
-            fatalError()
-        }
-        if let dailyData = self.homeViewModel[indexPath.item] {
-            cell.setCellData(currencyInfo: dailyData)
-        }
-        return cell
-    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.homeViewModel.didSelectDisplayitem(index: indexPath.item)
