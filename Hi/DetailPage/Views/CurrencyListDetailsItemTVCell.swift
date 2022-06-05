@@ -24,9 +24,9 @@ class CurrencyListDetailsItemTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setCellData(key: String, value: String) {
-        self.keyLabel.text = key
-        self.valueLabel.text = value
+    func setCellData(currencyItem: CurrencyDetailsItem) {
+        self.keyLabel.text = currencyItem.key
+        self.valueLabel.text = currencyItem.value
     }
 
 }

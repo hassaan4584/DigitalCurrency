@@ -72,16 +72,18 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate {
 
     // MARK: - Tableview
 
+    /// Configuring tableview with diffable datasource
     private func configureDatasource() {
         let datasource = UITableViewDiffableDataSource<Int, CurrencyDetailsItem>(tableView: currencyDetailsTableview) { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyListDetailsItemTVCell.reuseIdentifier, for: indexPath) as? CurrencyListDetailsItemTVCell else { fatalError() }
-            cell.setCellData(key: itemIdentifier.key, value: itemIdentifier.value)
+            cell.setCellData(currencyItem: itemIdentifier)
             return cell
         }
         self.datasource = datasource
         self.currencyDetailsTableview.delegate = self
     }
 
+    /// Apply the changes on tableview to reflect new data
     private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, CurrencyDetailsItem>()
         snapshot.appendSections([0])
