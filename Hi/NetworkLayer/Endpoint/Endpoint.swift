@@ -20,7 +20,7 @@ protocol Endpoint {
 
     var requestType: RequestType { get }
 
-    /// Helper function to create a URLRequest object using EndPoint
+    /// Helper function to create a URLRequest object using Endpoint. If someone doesnt override this, default implementation will be used
     func createRequest() -> URLRequest
 }
 

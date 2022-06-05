@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var sortTextField: UITextField!
 
+    /// Picker view that will be used as the input view for sorting text field
     private let pickerView: UIPickerView
     private let homeViewModel: HomeViewModelProtocol
     private var dataSource: UITableViewDiffableDataSource<Int, TimeSeriesDigitalCurrencyDaily>?
@@ -106,6 +107,7 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
 // MARK: - Tableview Delegate
 extension HomeViewController: UITableViewDelegate {
 
+    /// Configuring tableview using diffable datasource
     private func configureDataSource() {
         let dataSource = UITableViewDiffableDataSource<Int, TimeSeriesDigitalCurrencyDaily>(tableView: self.currencyListTableview) { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCurrencyListTVCell.reuseIdentifier, for: indexPath) as? HomeCurrencyListTVCell else { fatalError() }

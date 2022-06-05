@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// These are the available sorting options for the History data
 enum CurrencyHistorySorting: String {
     case dateAscending
     case dateDescending

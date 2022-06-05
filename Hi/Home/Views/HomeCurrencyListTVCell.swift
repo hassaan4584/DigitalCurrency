@@ -25,6 +25,7 @@ class HomeCurrencyListTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    /// Updaing information in cell based on given `TimeSeriesDigitalCurrencyDaily`
     func setCellData(currencyInfo: TimeSeriesDigitalCurrencyDaily) {
         self.dateLabel.text = currencyInfo.dateStr
         let key = currencyInfo.marketCapKey?.split(separator: " ").dropFirst().joined(separator: " ")

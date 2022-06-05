@@ -15,13 +15,13 @@ protocol NetworkManagerProtocol: AnyObject {
     var cancellables: Set<AnyCancellable> { get set }
 
     /// This function makes the network call using Comnine for the passed `Endpoint`
-    /// - Returns: The network request of `URLSessionDataTask`
     @discardableResult
     func makeCall<T: Codable> (withEndPoint endpoint: Endpoint) -> Future<T, NetworkError>
 
 }
 
 extension NetworkManagerProtocol {
+
     func makeCall<T: Codable> (withEndPoint endpoint: Endpoint) -> Future<T, NetworkError> {
 
         return Future<T, NetworkError> { promise in
