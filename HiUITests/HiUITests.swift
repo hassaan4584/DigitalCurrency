@@ -23,7 +23,7 @@ class HiUITests: XCTestCase {
         app.launchArguments = [UITestingConstants.LaunchArguments.mockHomeNetworkService.rawValue]
         app.launch()
 
-        let title = app.staticTexts["Currency List"].waitForExistence(timeout: 1.0)
+        let title = app.staticTexts["Bitcoin History"].waitForExistence(timeout: 1.0)
         XCTAssertTrue(title)
     }
 
