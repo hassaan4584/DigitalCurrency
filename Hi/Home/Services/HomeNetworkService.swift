@@ -21,8 +21,8 @@ final class HomeNetworkService: NetowkService {
         self.cancellables = Set<AnyCancellable>()
     }
 
-    func fetchCurrencyData(function: String, currencyCode: String, marketCode: String, onSuccess: @escaping ((DigitalCurrencyDTO) -> Void), onFailure: @escaping ((NetworkError) -> Void) ) {
-        let queryParams: QueryParams = ["function": function, "symbol": currencyCode, "market": marketCode, "apikey": AppConstants.ApiConstants.apiKey.rawValue]
+    func fetchCurrencyData(function: AppConstants.FunctionType, currencyCode: AppConstants.DigitalCurrencyCode, marketCode: AppConstants.MarketCode, onSuccess: @escaping ((DigitalCurrencyDTO) -> Void), onFailure: @escaping ((NetworkError) -> Void) ) {
+        let queryParams: QueryParams = ["function": function.rawValue, "symbol": currencyCode.rawValue, "market": marketCode.rawValue, "apikey": AppConstants.ApiConstants.apiKey.rawValue]
         let currencyEndpoint = HiEndpoint.query(queryParams: queryParams)
         self.networkManager.makeCall(withEndPoint: currencyEndpoint)
             .sink(receiveCompletion: { completion in

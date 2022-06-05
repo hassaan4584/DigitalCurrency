@@ -17,4 +17,16 @@ struct AppConstants {
         case home = "Home"
         case cryptoDetails = "CryptoDetails"
     }
+
+    enum FunctionType: String {
+        case digitalCurrencyDaily = "DIGITAL_CURRENCY_DAILY"
+    }
+
+    enum DigitalCurrencyCode: String {
+        case bitcoin = "BTC"
+    }
+
+    enum MarketCode: String {
+        case usd = "USD"
+    }
 }
