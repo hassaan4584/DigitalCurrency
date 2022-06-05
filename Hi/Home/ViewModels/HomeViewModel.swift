@@ -12,6 +12,7 @@ protocol HomeViewModelInputProtocol {
     func didSelectDisplayitem(index: Int)
     func showNextPage()
     func fetchCurrencyInformation()
+    func updateSorting(with newValue: CurrencyHistorySorting)
 }
 
 protocol HomeViewModelOutputProtocol {
@@ -23,18 +24,36 @@ protocol HomeViewModelOutputProtocol {
     var screenTitle: String { get }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]> { get }
     
+    var currentSorting: CurrencyHistorySorting { get }
+    
     var cryptoDetails: Observable<CryptoDetails?> { get }
+    
+    var availableSortingOptions: [CurrencyHistorySorting] { get }
     subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? { get }
 }
 
 
-protocol HomeVieWModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputProtocol { }
+protocol HomeViewModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputProtocol { }
 
-final class HomeViewModel: HomeVieWModelProtocol {
+enum CurrencyHistorySorting: String {
+    case dateAscending
+    case dateDescending
+    
+    var sortingName: String {
+        switch self {
+        case .dateAscending:
+            return "Sort by Date - Ascending"
+        case .dateDescending:
+            return "Sort by Date - Descending"
+        }
+    }
+}
+
+final class HomeViewModel: HomeViewModelProtocol {
     private let homeNetworkService: HomeNetworkService
     
     private let items: Observable<DigitalCurrencyDTO?>
-    
+    private var sortedItems: [TimeSeriesDigitalCurrencyDaily]
     private var totalItems: Int
     private let pageSize: Int
     private var currentlyShownItems: Int
@@ -48,12 +67,18 @@ final class HomeViewModel: HomeVieWModelProtocol {
         self.errorMessage = Observable("")
         self.displayItems = Observable([])
         self.cryptoDetails = Observable(nil)
+        self.currentSorting = CurrencyHistorySorting.dateDescending
+        self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
     }
     
+    private func resetPagination() {
+        self.currentlyShownItems = 0
+        self.displayItems.value.removeAll()
+    }
     /// Setup data for the next page and update`displayItems` property
     func showNextPage() {
-        guard (self.items.value?.timeSeriesDigitalCurrencyDaily.array.count ?? 0) > currentlyShownItems+pageSize-1 else { return }
-        let newItems = self.items.value!.timeSeriesDigitalCurrencyDaily.array[currentlyShownItems...currentlyShownItems+pageSize-1]
+        guard (self.sortedItems.count) > currentlyShownItems+pageSize-1 else { return }
+        let newItems = self.sortedItems[currentlyShownItems...currentlyShownItems+pageSize-1]
         displayItems.value.append(contentsOf: newItems)
         currentlyShownItems += pageSize
     }
@@ -67,6 +92,7 @@ final class HomeViewModel: HomeVieWModelProtocol {
             guard let self = self else { return }
             self.isLoading.value = false
             self.items.value = digitalCurrencyDto
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
             self.showNextPage()
         } onFailure: { [weak self] err in
             guard let self = self else { return }
@@ -74,7 +100,6 @@ final class HomeViewModel: HomeVieWModelProtocol {
             print(err.errorMessageStr)
             self.errorMessage.value = err.errorMessageStr
         }
-
     }
     
     func didSelectDisplayitem(index: Int) {
@@ -83,6 +108,20 @@ final class HomeViewModel: HomeVieWModelProtocol {
         guard let currencyDetailInfo = self[index] else { return }
         let selectedCryptoDetails = CryptoDetails(metadata: metadata, currencyDetails: currencyDetailInfo)
         self.cryptoDetails.value = selectedCryptoDetails
+    }
+    
+    func updateSorting(with newValue: CurrencyHistorySorting) {
+        guard newValue != self.currentSorting else { return }
+        switch newValue {
+        case .dateAscending:
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr < $1.dateStr }) ?? []
+        case .dateDescending:
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
+
+        }
+        self.resetPagination()
+        self.showNextPage()
+        self.currentSorting = newValue
     }
     
     subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? {
@@ -98,6 +137,9 @@ final class HomeViewModel: HomeVieWModelProtocol {
     var screenTitle: String { "BitCoin History" }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]>
     var cryptoDetails: Observable<CryptoDetails?>
-    
+    var currentSorting: CurrencyHistorySorting
+    var availableSortingOptions: [CurrencyHistorySorting] {
+        return [.dateAscending, .dateDescending]
+    }
 
 }

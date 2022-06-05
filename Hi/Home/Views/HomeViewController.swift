@@ -11,13 +11,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var currencyListTableview: UITableView!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var sortTextField: UITextField!
     
-    private let homeViewModel: HomeVieWModelProtocol
+    private let pickerView: UIPickerView
+    private let homeViewModel: HomeViewModelProtocol
     
     private static let storyboardIdentifier = "HomeViewController"
     
     // MARK: Initializations
-    static func createListViewController(homeViewModel: HomeVieWModelProtocol) -> HomeViewController {
+    static func createListViewController(homeViewModel: HomeViewModelProtocol) -> HomeViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: self.storyboardIdentifier) { aCoder in
             return HomeViewController(homeViewModel: homeViewModel, coder: aCoder)
@@ -25,8 +27,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return vc
     }
     
-    init?(homeViewModel: HomeVieWModelProtocol, coder: NSCoder) {
+    init?(homeViewModel: HomeViewModelProtocol, coder: NSCoder) {
         self.homeViewModel = homeViewModel
+        self.pickerView = UIPickerView()
         super.init(coder: coder)
     }
     
@@ -42,9 +45,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = self.homeViewModel.screenTitle
         currencyListTableview.rowHeight = UITableView.automaticDimension
         currencyListTableview.estimatedRowHeight = 56
+        
+        self.sortTextField.inputView = pickerView
+        pickerView.delegate = self
+        pickerView.dataSource = self
     }
     
-    func setupViewModelBindings(viewModel: HomeVieWModelProtocol) {
+    func setupViewModelBindings(viewModel: HomeViewModelProtocol) {
         viewModel.displayItems.observe(on: self) { [weak self] _ in self?.updateItems() }
         viewModel.isLoading.observe(on: self) { [weak self] in self?.updateLoading($0) }
         viewModel.errorMessage.observe(on: self) { [weak self] in self?.showErrorMessage($0) }
@@ -111,6 +118,34 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.homeViewModel.didSelectDisplayitem(index: indexPath.item)
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if self.sortTextField.isEditing {
+            self.view.endEditing(true)
+            return false
+        }
+        return true
+    }
+}
 
+extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.homeViewModel.availableSortingOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        guard row >= 0, row < homeViewModel.availableSortingOptions.count else { return nil }
+        return self.homeViewModel.availableSortingOptions[row].sortingName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard row >= 0, row < homeViewModel.availableSortingOptions.count else { return }
+        self.sortTextField.placeholder = self.homeViewModel.availableSortingOptions[row].sortingName
+        self.homeViewModel.updateSorting(with: self.homeViewModel.availableSortingOptions[row])
+    }
+    
 }
 

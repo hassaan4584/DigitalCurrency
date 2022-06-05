@@ -61,6 +61,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2p-yZ-SpQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sort By" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbT-ev-try">
+                                        <rect key="frame" x="15" y="5" width="384" height="90"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dbT-ev-try" secondAttribute="trailing" constant="15" id="0SW-eE-NlN"/>
+                                    <constraint firstAttribute="bottom" secondItem="dbT-ev-try" secondAttribute="bottom" constant="5" id="IfD-JD-ic6"/>
+                                    <constraint firstItem="dbT-ev-try" firstAttribute="leading" secondItem="J2p-yZ-SpQ" secondAttribute="leading" constant="15" id="L4l-4z-dDj"/>
+                                    <constraint firstItem="dbT-ev-try" firstAttribute="top" secondItem="J2p-yZ-SpQ" secondAttribute="top" constant="5" id="M7b-09-Vxt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,7 +85,11 @@
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                         <constraints>
+                            <constraint firstItem="3eT-pS-Tys" firstAttribute="top" secondItem="J2p-yZ-SpQ" secondAttribute="bottom" id="1VN-E7-BZ9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J2p-yZ-SpQ" secondAttribute="trailing" id="3LD-Cd-4Um"/>
                             <constraint firstItem="7MK-n7-gve" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kbk-cu-xxF"/>
+                            <constraint firstItem="J2p-yZ-SpQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MnD-M2-xLc"/>
+                            <constraint firstItem="J2p-yZ-SpQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ROd-oz-WoB"/>
                             <constraint firstItem="3eT-pS-Tys" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="d37-bs-juS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3eT-pS-Tys" secondAttribute="bottom" id="dYI-Bc-ESp"/>
                             <constraint firstItem="3eT-pS-Tys" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gDq-DJ-WqW"/>
@@ -81,11 +102,12 @@
                     <connections>
                         <outlet property="currencyListTableview" destination="3eT-pS-Tys" id="jwv-Ds-Faf"/>
                         <outlet property="infoLabel" destination="7MK-n7-gve" id="cQs-qt-9JM"/>
+                        <outlet property="sortTextField" destination="dbT-ev-try" id="8JN-NJ-J9E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="66"/>
+            <point key="canvasLocation" x="-26.086956521739133" y="65.625"/>
         </scene>
     </scenes>
     <resources>
