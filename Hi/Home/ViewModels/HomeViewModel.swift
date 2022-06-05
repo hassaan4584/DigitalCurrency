@@ -95,7 +95,7 @@ final class HomeViewModel: HomeVieWModelProtocol {
     /// Observable error message that is to be shown to user
     let errorMessage: Observable<String>
     /// Title of the Crypto Details Screen
-    var screenTitle: String { "Currency List" }
+    var screenTitle: String { "BitCoin History" }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]>
     var cryptoDetails: Observable<CryptoDetails?>
     

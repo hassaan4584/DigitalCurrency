@@ -38,7 +38,7 @@ struct TimeSeriesDigitalCurrencyDailyDTO: Codable {
             let decodedObject = try container.decode(TimeSeriesDigitalCurrencyDaily.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
             tempArray.append(decodedObject)
         }
-        array = tempArray.sorted() { $0.timeStr < $1.timeStr }
+        array = tempArray
     }
 }
 
@@ -62,7 +62,7 @@ struct DigitalCurrencyMetadata: Codable {
 struct TimeSeriesDigitalCurrencyDaily: Codable {
     
     let dictionary: [String: String]
-    let timeStr: String
+    let dateStr: String
     struct DynamicCodingKeys: CodingKey {
         var stringValue: String
         init?(stringValue: String) {
@@ -81,7 +81,7 @@ struct TimeSeriesDigitalCurrencyDaily: Codable {
             dit[key.stringValue] = str
         }
         let timeStr = container.codingPath.last?.stringValue ?? ""
-        self.timeStr = timeStr
+        self.dateStr = timeStr
         dictionary = dit
     }
     

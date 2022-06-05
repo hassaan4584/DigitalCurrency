@@ -17,6 +17,7 @@
 		1A8B749A284915BA0094FD40 /* DetailsNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B7499284915BA0094FD40 /* DetailsNavigationCoordinator.swift */; };
 		1A8B749C28493A3F0094FD40 /* UITestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B749B28493A3F0094FD40 /* UITestingConstants.swift */; };
 		1A8B749D28493EE30094FD40 /* UITestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B749B28493A3F0094FD40 /* UITestingConstants.swift */; };
+		1A8B74A1284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74A0284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift */; };
 		1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */; };
 		1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */; };
 		1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */; };
@@ -77,6 +78,7 @@
 		1A8B749628490FFC0094FD40 /* CryptoDetailsVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsVCTests.swift; sourceTree = "<group>"; };
 		1A8B7499284915BA0094FD40 /* DetailsNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNavigationCoordinator.swift; sourceTree = "<group>"; };
 		1A8B749B28493A3F0094FD40 /* UITestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingConstants.swift; sourceTree = "<group>"; };
+		1A8B74A0284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListDetailsItemTVCell.swift; sourceTree = "<group>"; };
 		1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkService.swift; sourceTree = "<group>"; };
 		1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyMetadata.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				1A8B7491284908900094FD40 /* CryptoDetailVC.swift */,
 				1A8B7493284908A40094FD40 /* CryptoDetails.storyboard */,
+				1A8B74A0284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				1ACE59EA28452C8200A102C1 /* HttpMethod.swift in Sources */,
 				1ABBC9F528469C720026EFA9 /* MockNetworkManager.swift in Sources */,
 				1A8B74882847DE0E0094FD40 /* RequestEncoder.swift in Sources */,
+				1A8B74A1284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift in Sources */,
 				1ACE59FF28454EF400A102C1 /* Observable.swift in Sources */,
 				1ACE59E328452BCE00A102C1 /* NetworkManagerProtocol.swift in Sources */,
 				1ACE59EC28452CBB00A102C1 /* HiEndpoint.swift in Sources */,

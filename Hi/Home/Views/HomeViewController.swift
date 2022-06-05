@@ -40,6 +40,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.setupViewModelBindings(viewModel: self.homeViewModel)
         self.homeViewModel.fetchCurrencyInformation()
         self.title = self.homeViewModel.screenTitle
+        currencyListTableview.rowHeight = UITableView.automaticDimension
+        currencyListTableview.estimatedRowHeight = 56
     }
     
     func setupViewModelBindings(viewModel: HomeVieWModelProtocol) {
@@ -81,6 +83,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // MARK: - Tableview
     func numberOfSections(in tableView: UITableView) -> Int {
+        print("Number of sections")
         return 1
     }
     
@@ -90,6 +93,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if self.homeViewModel.displayItems.value.count-1 == indexPath.row {
+            print("new request started")
             self.homeViewModel.showNextPage()
         }
     }
@@ -97,8 +101,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCurrencyListTVCell", for: indexPath) as? HomeCurrencyListTVCell else {
             fatalError()
         }
-        cell.currencyNameLabel.text = self.homeViewModel[indexPath.item]?.timeStr
-        cell.priceLabel.text = "\(indexPath.row)"
+        if let dailyData = self.homeViewModel[indexPath.item] {
+            cell.setCellData(currencyInfo: dailyData)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

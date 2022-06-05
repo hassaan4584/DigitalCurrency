@@ -9,10 +9,7 @@ import UIKit
 
 class HomeCurrencyListTVCell: UITableViewCell {
 
-    @IBOutlet weak var currencyNameLabel: UILabel!
-    @IBOutlet weak var currencyCodeLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var exchangeRateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +20,10 @@ class HomeCurrencyListTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setCellData(currencyInfo: TimeSeriesDigitalCurrencyDaily) {
+        self.dateLabel.text = currencyInfo.dateStr
     }
 
 }
