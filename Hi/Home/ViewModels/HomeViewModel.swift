@@ -105,6 +105,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         }
     }
     
+    // MARK: HomeViewModelInputProtocol
     func didSelectDisplayitem(index: Int) {
         guard let metadata = self.items.value?.metadata else { return }
         guard index < self.displayItems.value.count else { return }
@@ -133,17 +134,19 @@ final class HomeViewModel: HomeViewModelProtocol {
         return self.displayItems.value[index]
     }
     
+    // MARK: HomeViewModelOutputProtocol
     /// Handles the loading indicator based on its state
     let isLoading: Observable<Bool> = Observable(false)
     /// Observable error message that is to be shown to user
     let errorMessage: Observable<String>
     /// Title of the Crypto Details Screen
-    var screenTitle: String { "BitCoin History" }
+    var screenTitle: String { "Bitcoin History" }
+    /// Datasource for the elements to display data from
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]>
     var cryptoDetails: Observable<CryptoDetails?>
     var currentSorting: CurrencyHistorySorting
     var availableSortingOptions: [CurrencyHistorySorting] {
-        return [.dateAscending, .dateDescending]
+        return [.dateDescending, .dateAscending]
     }
     var sortingTextFieldPlaceholder: Observable<String>
 

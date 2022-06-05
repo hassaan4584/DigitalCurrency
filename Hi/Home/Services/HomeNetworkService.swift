@@ -22,7 +22,7 @@ final class HomeNetworkService: NetowkService {
     }
     
     func fetchCurrencyData(function: String, currencyCode: String, marketCode: String, onSuccess: @escaping ((DigitalCurrencyDTO) -> Void), onFailure: @escaping ((NetworkError) -> Void) ) {
-        let queryParams: QueryParams = ["function": function, "symbol" : currencyCode, "market": marketCode, "apikey": "5WDAFC09SA7SXNBI"]
+        let queryParams: QueryParams = ["function": function, "symbol" : currencyCode, "market": marketCode, "apikey": AppConstants.ApiConstants.apiKey.rawValue]
         let currencyEndpoint = HiEndpoint.query(queryParams: queryParams)
         self.networkManager.makeCall(withEndPoint: currencyEndpoint)
             .sink(receiveCompletion: { completion in

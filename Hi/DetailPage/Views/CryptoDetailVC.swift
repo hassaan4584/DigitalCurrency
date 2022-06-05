@@ -24,7 +24,7 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - Initialization
     static func createCryptoDetailsScreen(viewModel: CryptoDetailViewModelProtocol) -> CryptoDetailVC {
-        let storyboard = UIStoryboard(name: "CryptoDetails", bundle: nil)
+        let storyboard = UIStoryboard(name: AppConstants.StoryboardName.cryptoDetails.rawValue, bundle: nil)
         let detailsVC = storyboard.instantiateViewController(identifier: self.storyboardIdentifier) { aCoder in
             return CryptoDetailVC(detailsViewModel: viewModel, coder: aCoder)
         }

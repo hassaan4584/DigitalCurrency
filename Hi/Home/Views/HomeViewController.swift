@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     
     // MARK: Initializations
     static func createListViewController(homeViewModel: HomeViewModelProtocol) -> HomeViewController {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let storyboard = UIStoryboard(name: AppConstants.StoryboardName.home.rawValue, bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: self.storyboardIdentifier) { aCoder in
             return HomeViewController(homeViewModel: homeViewModel, coder: aCoder)
         }
@@ -40,10 +40,10 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.setupViews()
         self.setupViewModelBindings(viewModel: self.homeViewModel)
         self.homeViewModel.fetchCurrencyInformation()
         self.title = self.homeViewModel.screenTitle
-        self.setupViews()
     }
     
     private func setupViews() {
