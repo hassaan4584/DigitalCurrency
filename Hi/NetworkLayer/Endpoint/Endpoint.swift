@@ -20,5 +20,5 @@ protocol Endpoint {
 
     var requestType: RequestType { get }
     /// Helper function to create a URLRequest object using EndPoint
-    func createRequest() -> URLRequest;
+    func createRequest() -> URLRequest
 }

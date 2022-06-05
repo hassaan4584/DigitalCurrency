@@ -14,7 +14,6 @@ protocol NetworkManagerProtocol: AnyObject {
     var logger: NetworkLoggerProtocol { get }
     var cancellables: Set<AnyCancellable> { get set }
 
-
     /// This function makes the network call using Comnine for the passed `Endpoint`
     /// - Returns: The network request of `URLSessionDataTask`
     @discardableResult
@@ -24,7 +23,7 @@ protocol NetworkManagerProtocol: AnyObject {
 
 extension NetworkManagerProtocol {
     func makeCall<T: Codable> (withEndPoint endpoint: Endpoint) -> Future<T, NetworkError> {
-        
+
         return Future<T, NetworkError> { promise in
             let urlRequest = endpoint.createRequest()
             self.logger.log(request: urlRequest)

@@ -12,7 +12,7 @@ class HomeCurrencyListTVCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var marketCapTitleLabel: UILabel!
     @IBOutlet weak var marketCapValueLabel: UILabel!
-    
+
     static let reuseIdentifier = "HomeCurrencyListTVCell"
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +24,7 @@ class HomeCurrencyListTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func setCellData(currencyInfo: TimeSeriesDigitalCurrencyDaily) {
         self.dateLabel.text = currencyInfo.dateStr
         let key = currencyInfo.marketCapKey?.split(separator: " ").dropFirst().joined(separator: " ")

@@ -8,7 +8,7 @@
 import Foundation
 
 struct UITestingConstants {
-    
+
     enum LaunchArguments: String {
         /// Indicates that the app is run for UI Testing
         case enableUITesting

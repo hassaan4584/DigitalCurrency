@@ -11,7 +11,7 @@ import XCTest
 class CryptoDetailsVCTests: XCTestCase {
 
     var sut: CryptoDetailVC!
-    
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -19,7 +19,7 @@ class CryptoDetailsVCTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+
     /// Testing Details VC if it correctly instantiated
     func testStoryboardIdentifier_whenCorrectStoryboardIdGive_shouldInstantiateDetailsVC() throws {
         guard let currencyData = UnitTestUtils.getCurrencyData(from: "digitalCurrency_eth_usd") else { return }
@@ -28,11 +28,10 @@ class CryptoDetailsVCTests: XCTestCase {
         }
 
         sut = CryptoDetailVC.createCryptoDetailsScreen(viewModel: CryptoDetailViewModel(cryptoItemDetails: CryptoDetails(metadata: digitalCurrencyInfo.metadata, currencyDetails: digitalCurrencyInfo.timeSeriesDigitalCurrencyDaily.array[0])))
-        
+
         // Assert
         XCTAssertNotNil(sut)
-        
-    }
 
+    }
 
 }

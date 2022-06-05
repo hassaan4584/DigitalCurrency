@@ -10,35 +10,34 @@ import Foundation
 typealias QueryParams = [String: String]
 
 enum HiEndpoint: Endpoint {
-    
+
 case query(queryParams: QueryParams)
-    
-    //query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=CNY&apikey=demo
+
     var baseURL: URL {
         guard let url = URL(string: "https://www.alphavantage.co") else {
             fatalError("Invalid Base URL")
         }
         return url
     }
-    
+
     var path: String {
         switch self {
         case .query:
             return "query"
         }
     }
-    
+
     var headers: [String: String]? {
         ["User-Agent": "Hi iOS App"]
     }
-    
+
     var httpMethod: String {
         switch self {
         case .query:
             return HttpMethod.get.rawValue
         }
     }
-    
+
     var requestType: RequestType {
         switch self {
         case .query(let queryParams):
@@ -51,7 +50,7 @@ case query(queryParams: QueryParams)
         var urlRequest = URLRequest.init(url: url)
         urlRequest.allHTTPHeaderFields = self.headers
         urlRequest.httpMethod = self.httpMethod
-        
+
         switch self.requestType {
         case .simple:
             break

@@ -17,7 +17,7 @@ class HiUITests: XCTestCase {
     override func tearDownWithError() throws {
         app.terminate()
     }
-    
+
     func testNormalLaunch_whenTheAppIsLaunched_HomeScreenHasNavigationController() throws {
         app = XCUIApplication()
         app.launchArguments = [UITestingConstants.LaunchArguments.mockHomeNetworkService.rawValue]

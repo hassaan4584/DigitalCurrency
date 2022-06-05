@@ -33,9 +33,7 @@ final class CryptoDetailViewModel: CryptoDetailViewModelProtocol {
         }
 
     }
-    
-    
-    
+
     // MARK: CryptoDetailViewModelOutputProtocol
     var screenTitle: String { "\(self.cryptoItem.metadata.the3DigitalCurrencyName) Details" }
     //

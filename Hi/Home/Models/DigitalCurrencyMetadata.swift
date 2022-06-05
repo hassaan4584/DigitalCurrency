@@ -15,7 +15,7 @@ struct DigitalCurrencyDTO: Codable {
         case metadata = "Meta Data"
         case timeSeriesDigitalCurrencyDaily = "Time Series (Digital Currency Daily)"
     }
-    
+
 }
 
 struct TimeSeriesDigitalCurrencyDailyDTO: Codable {
@@ -26,11 +26,11 @@ struct TimeSeriesDigitalCurrencyDailyDTO: Codable {
         init?(stringValue: String) {
             self.stringValue = stringValue
         }
-        
+
         var intValue: Int?
         init?(intValue: Int) { return nil }
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
         var tempArray = [TimeSeriesDigitalCurrencyDaily]()
@@ -57,10 +57,9 @@ struct DigitalCurrencyMetadata: Codable {
     }
 }
 
-
 // MARK: - TimeSeriesDigitalCurrencyDaily
 struct TimeSeriesDigitalCurrencyDaily: Codable, Hashable {
-    
+
     let dictionary: [String: String]
     let dateStr: String
     struct DynamicCodingKeys: CodingKey {
@@ -68,11 +67,11 @@ struct TimeSeriesDigitalCurrencyDaily: Codable, Hashable {
         init?(stringValue: String) {
             self.stringValue = stringValue
         }
-        
+
         var intValue: Int?
         init?(intValue: Int) { return nil }
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
         var dit: [String: String] = [:]
@@ -84,9 +83,9 @@ struct TimeSeriesDigitalCurrencyDaily: Codable, Hashable {
         self.dateStr = timeStr
         dictionary = dit
     }
-    
+
     var marketCapKey: String? {
-        guard let marketCapKey = (self.dictionary.keys.filter() { $0.contains("market cap") }).first else {
+        guard let marketCapKey = (self.dictionary.keys.filter { $0.contains("market cap") }).first else {
             return nil
         }
         return marketCapKey

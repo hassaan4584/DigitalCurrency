@@ -13,4 +13,3 @@ struct CurrencyDetailsItem: Hashable {
     /// The value associated with the `key`
     let value: String
 }
-

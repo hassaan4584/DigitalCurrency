@@ -29,7 +29,4 @@ final class NetworkManager: NetworkManagerProtocol {
         self.logger = logger
     }
 
-
-    
-
 }

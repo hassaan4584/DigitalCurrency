@@ -23,7 +23,7 @@ class CurrencyListDetailsItemTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func setCellData(key: String, value: String) {
         self.keyLabel.text = key
         self.valueLabel.text = value

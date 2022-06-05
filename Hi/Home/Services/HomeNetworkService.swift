@@ -15,14 +15,14 @@ protocol NetowkService {
 final class HomeNetworkService: NetowkService {
     let networkManager: NetworkManagerProtocol
     private var cancellables: Set<AnyCancellable>
-    
+
     init( networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
         self.cancellables = Set<AnyCancellable>()
     }
-    
+
     func fetchCurrencyData(function: String, currencyCode: String, marketCode: String, onSuccess: @escaping ((DigitalCurrencyDTO) -> Void), onFailure: @escaping ((NetworkError) -> Void) ) {
-        let queryParams: QueryParams = ["function": function, "symbol" : currencyCode, "market": marketCode, "apikey": AppConstants.ApiConstants.apiKey.rawValue]
+        let queryParams: QueryParams = ["function": function, "symbol": currencyCode, "market": marketCode, "apikey": AppConstants.ApiConstants.apiKey.rawValue]
         let currencyEndpoint = HiEndpoint.query(queryParams: queryParams)
         self.networkManager.makeCall(withEndPoint: currencyEndpoint)
             .sink(receiveCompletion: { completion in
@@ -30,7 +30,7 @@ final class HomeNetworkService: NetowkService {
                 case .failure(let err):
                     onFailure(err)
                 case .finished:
-                    break;
+                    break
                 }
             }) { (currencyDTO: DigitalCurrencyDTO) in
                 onSuccess(currencyDTO)

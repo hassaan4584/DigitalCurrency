@@ -15,11 +15,11 @@ protocol DetailsNavigationCoordinator {
 extension DetailsNavigationCoordinator where Self: UIViewController {
     func navigateToCryptoDetailsVC(viewModel: CryptoDetailViewModelProtocol) {
         let detailsVC = CryptoDetailVC.createCryptoDetailsScreen(viewModel: viewModel)
-        
+
         if let navController = self.navigationController {
             navController.pushViewController(detailsVC, animated: true)
         } else {
-            self.present(detailsVC , animated: true, completion: nil)
+            self.present(detailsVC, animated: true, completion: nil)
         }
     }
 }

@@ -23,16 +23,15 @@ protocol HomeViewModelOutputProtocol {
     /// Title of the Crypto List Screen
     var screenTitle: String { get }
     var displayItems: Observable<[TimeSeriesDigitalCurrencyDaily]> { get }
-    
+
     var currentSorting: CurrencyHistorySorting { get }
-    
+
     var cryptoDetails: Observable<CryptoDetails?> { get }
-    
+
     var sortingTextFieldPlaceholder: Observable<String> { get }
     var availableSortingOptions: [CurrencyHistorySorting] { get }
     subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? { get }
 }
-
 
 protocol HomeViewModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputProtocol { }
 
@@ -41,7 +40,7 @@ enum CurrencyHistorySorting: String {
     case dateDescending
     case marketCapAscending
     case marketCapDescending
-    
+
     /// Name to be shown in the text field
     var sortingName: String {
         switch self {
@@ -59,13 +58,13 @@ enum CurrencyHistorySorting: String {
 
 final class HomeViewModel: HomeViewModelProtocol {
     private let homeNetworkService: HomeNetworkService
-    
+
     private let items: Observable<DigitalCurrencyDTO?>
     private var sortedItems: [TimeSeriesDigitalCurrencyDaily]
     private var totalItems: Int
     private let pageSize: Int
     private var currentlyShownItems: Int
-    
+
     init(homeNetworkService: HomeNetworkService, pageSize: Int=10) {
         self.homeNetworkService = homeNetworkService
         self.pageSize = pageSize
@@ -76,10 +75,10 @@ final class HomeViewModel: HomeViewModelProtocol {
         self.displayItems = Observable([])
         self.cryptoDetails = Observable(nil)
         self.currentSorting = CurrencyHistorySorting.dateDescending
-        self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
+        self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted { $0.dateStr > $1.dateStr }) ?? []
         self.sortingTextFieldPlaceholder = Observable("")
     }
-    
+
     private func resetPagination() {
         self.currentlyShownItems = 0
         self.displayItems.value.removeAll()
@@ -91,7 +90,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         displayItems.value.append(contentsOf: newItems)
         currentlyShownItems += pageSize
     }
-    
+
     func fetchCurrencyInformation() {
         let currencyData = UnitTestUtils.getCurrencyData(from: "digitalCurrency_eth_usd")
         MockURLProtocol.stubResponseData = currencyData
@@ -101,7 +100,7 @@ final class HomeViewModel: HomeViewModelProtocol {
             guard let self = self else { return }
             self.isLoading.value = false
             self.items.value = digitalCurrencyDto
-            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted { $0.dateStr > $1.dateStr }) ?? []
             self.showNextPage()
         } onFailure: { [weak self] err in
             guard let self = self else { return }
@@ -110,7 +109,7 @@ final class HomeViewModel: HomeViewModelProtocol {
             self.errorMessage.value = err.errorMessageStr
         }
     }
-    
+
     // MARK: HomeViewModelInputProtocol
     func didSelectDisplayitem(index: Int) {
         guard let metadata = self.items.value?.metadata else { return }
@@ -119,30 +118,30 @@ final class HomeViewModel: HomeViewModelProtocol {
         let selectedCryptoDetails = CryptoDetails(metadata: metadata, currencyDetails: currencyDetailInfo)
         self.cryptoDetails.value = selectedCryptoDetails
     }
-    
+
     func updateSorting(with newValue: CurrencyHistorySorting) {
         guard newValue != self.currentSorting else { return }
         switch newValue {
         case .dateAscending:
-            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr < $1.dateStr }) ?? []
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted { $0.dateStr < $1.dateStr }) ?? []
         case .dateDescending:
-            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted { $0.dateStr > $1.dateStr }) ?? []
         case .marketCapAscending:
-            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.marketCapValue < $1.marketCapValue}) ?? []
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted { $0.marketCapValue < $1.marketCapValue}) ?? []
         case .marketCapDescending:
-            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.marketCapValue > $1.marketCapValue}) ?? []
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted { $0.marketCapValue > $1.marketCapValue}) ?? []
         }
         self.resetPagination()
         self.showNextPage()
         self.currentSorting = newValue
         self.sortingTextFieldPlaceholder.value = newValue.sortingName
     }
-    
+
     subscript( index: Int) -> TimeSeriesDigitalCurrencyDaily? {
         guard index >= 0, index < self.displayItems.value.count else { return nil }
         return self.displayItems.value[index]
     }
-    
+
     // MARK: HomeViewModelOutputProtocol
     /// Handles the loading indicator based on its state
     let isLoading: Observable<Bool> = Observable(false)

@@ -13,7 +13,7 @@ public enum NetworkError: Error {
     case cancelled
     case generic(Error)
     case emptyData
-    
+
     /// The error message to be shown to user
     var errorMessageStr: String {
         switch self {

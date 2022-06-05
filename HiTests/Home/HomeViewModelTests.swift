@@ -11,7 +11,7 @@ import XCTest
 class HomeViewModelTests: XCTestCase {
 
     var sut: HomeViewModel!
-    private let digitalCurrency_eth_usd: String = "digitalCurrency_eth_usd"
+    private let digitalCurrencyEthUsd: String = "digitalCurrency_eth_usd"
 
     override func setUpWithError() throws {
     }
@@ -27,23 +27,23 @@ class HomeViewModelTests: XCTestCase {
         let pageSize = 10
         sut = HomeViewModel(homeNetworkService: HomeNetworkService(networkManager: MockNetworkManager()))
         let expectation = self.expectation(description: "Currency Expectation")
-        let currencyData = UnitTestUtils.getCurrencyData(from: digitalCurrency_eth_usd)
+        let currencyData = UnitTestUtils.getCurrencyData(from: digitalCurrencyEthUsd)
         MockURLProtocol.stubResponseData = currencyData
-        
+
         // Assert + Act
         sut.displayItems.observe(on: self) { currencyList in
             XCTAssertEqual(currencyList.count, pageSize)
             expectation.fulfill()
         }
-        
-        sut.errorMessage.observe(on: self) { err in
+
+        sut.errorMessage.observe(on: self) { _ in
             XCTFail("Error Received")
         }
-        
+
         sut.fetchCurrencyInformation()
-        
+
         self.waitForExpectations(timeout: 5.0, handler: nil)
-    
+
     }
 
 }

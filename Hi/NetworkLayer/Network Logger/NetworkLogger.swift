@@ -40,4 +40,3 @@ public final class NetworkLogger: NetworkLoggerProtocol {
 #endif
     }
 }
-
