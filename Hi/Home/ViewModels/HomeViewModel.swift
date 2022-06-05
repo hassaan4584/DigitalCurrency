@@ -39,6 +39,8 @@ protocol HomeViewModelProtocol: HomeViewModelInputProtocol, HomeViewModelOutputP
 enum CurrencyHistorySorting: String {
     case dateAscending
     case dateDescending
+    case marketCapAscending
+    case marketCapDescending
     
     /// Name to be shown in the text field
     var sortingName: String {
@@ -47,6 +49,10 @@ enum CurrencyHistorySorting: String {
             return "Sort by Date - Ascending"
         case .dateDescending:
             return "Sort by Date - Descending"
+        case .marketCapAscending:
+            return "Sort by Market Cap - Ascending"
+        case .marketCapDescending:
+            return "Sort by Market Cap - Descending"
         }
     }
 }
@@ -121,7 +127,10 @@ final class HomeViewModel: HomeViewModelProtocol {
             self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr < $1.dateStr }) ?? []
         case .dateDescending:
             self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.dateStr > $1.dateStr }) ?? []
-
+        case .marketCapAscending:
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.marketCapValue < $1.marketCapValue}) ?? []
+        case .marketCapDescending:
+            self.sortedItems = (self.items.value?.timeSeriesDigitalCurrencyDaily.array.sorted() { $0.marketCapValue > $1.marketCapValue}) ?? []
         }
         self.resetPagination()
         self.showNextPage()
@@ -146,7 +155,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     var cryptoDetails: Observable<CryptoDetails?>
     var currentSorting: CurrencyHistorySorting
     var availableSortingOptions: [CurrencyHistorySorting] {
-        return [.dateDescending, .dateAscending]
+        return [.dateDescending, .dateAscending, .marketCapDescending, .marketCapAscending]
     }
     var sortingTextFieldPlaceholder: Observable<String>
 

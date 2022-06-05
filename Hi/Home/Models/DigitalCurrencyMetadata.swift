@@ -85,20 +85,17 @@ struct TimeSeriesDigitalCurrencyDaily: Codable {
         dictionary = dit
     }
     
-//    let the1AOpenUSD, the1BOpenUSD, the2AHighUSD, the2BHighUSD: String
-//    let the3ALowUSD, the3BLowUSD, the4ACloseUSD, the4BCloseUSD: String
-//    let the5Volume, the6MarketCapUSD: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case the1AOpenUSD = "1a. open (USD)"
-//        case the1BOpenUSD = "1b. open (USD)"
-//        case the2AHighUSD = "2a. high (USD)"
-//        case the2BHighUSD = "2b. high (USD)"
-//        case the3ALowUSD = "3a. low (USD)"
-//        case the3BLowUSD = "3b. low (USD)"
-//        case the4ACloseUSD = "4a. close (USD)"
-//        case the4BCloseUSD = "4b. close (USD)"
-//        case the5Volume = "5. volume"
-//        case the6MarketCapUSD = "6. market cap (USD)"
-//    }
+    var marketCapKey: String? {
+        guard let marketCapKey = (self.dictionary.keys.filter() { $0.contains("market cap") }).first else {
+            return nil
+        }
+        return marketCapKey
+    }
+    var marketCapValue: Double {
+        guard let marketCapKey = self.marketCapKey else {
+            return 0.0
+        }
+        guard let marketCapValue = self.dictionary[marketCapKey] else { return 0.0 }
+        return Double(marketCapValue) ?? 0.0
+    }
 }

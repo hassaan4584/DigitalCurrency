@@ -34,15 +34,15 @@
                                     <constraint firstItem="dbT-ev-try" firstAttribute="top" secondItem="J2p-yZ-SpQ" secondAttribute="top" constant="5" id="M7b-09-Vxt"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="56" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3eT-pS-Tys">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="86" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3eT-pS-Tys">
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCurrencyListTVCell" id="NAe-9P-72e" customClass="HomeCurrencyListTVCell" customModule="Hi" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="55.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="91.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NAe-9P-72e" id="Dtn-nZ-atc">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="55.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THg-Vi-Jhk">
@@ -55,16 +55,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Market Cap:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOy-2l-qXJ">
+                                                    <rect key="frame" x="15" y="55.5" width="91.5" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="ClP-Ds-Kwr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vny-8z-yDB">
+                                                    <rect key="frame" x="116.5" y="56" width="42.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="THg-Vi-Jhk" firstAttribute="leading" secondItem="Dtn-nZ-atc" secondAttribute="leading" constant="15" id="2qX-Qv-LJ6"/>
+                                                <constraint firstItem="iOy-2l-qXJ" firstAttribute="leading" secondItem="Dtn-nZ-atc" secondAttribute="leading" constant="15" id="Amq-yA-Rp7"/>
+                                                <constraint firstAttribute="bottom" secondItem="iOy-2l-qXJ" secondAttribute="bottom" constant="15" id="BfI-HE-5vT"/>
                                                 <constraint firstItem="THg-Vi-Jhk" firstAttribute="top" secondItem="Dtn-nZ-atc" secondAttribute="top" constant="15" id="Q3F-sv-8nd"/>
-                                                <constraint firstAttribute="bottom" secondItem="THg-Vi-Jhk" secondAttribute="bottom" constant="15" id="iAb-cz-oSF"/>
+                                                <constraint firstItem="Vny-8z-yDB" firstAttribute="centerY" secondItem="iOy-2l-qXJ" secondAttribute="centerY" id="bUa-ms-wib"/>
+                                                <constraint firstItem="iOy-2l-qXJ" firstAttribute="top" secondItem="THg-Vi-Jhk" secondAttribute="bottom" constant="15" id="gJX-83-YAh"/>
+                                                <constraint firstItem="Vny-8z-yDB" firstAttribute="leading" secondItem="iOy-2l-qXJ" secondAttribute="trailing" constant="10" id="rwh-XX-4f9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="AccessibilityIdentifier"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="THg-Vi-Jhk" id="twa-BV-aGH"/>
+                                            <outlet property="marketCapTitleLabel" destination="iOy-2l-qXJ" id="0js-V7-BPF"/>
+                                            <outlet property="marketCapValueLabel" destination="Vny-8z-yDB" id="WVQ-DM-PAD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

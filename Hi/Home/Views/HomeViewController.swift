@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, DetailsNavigationCoordinator {
     
     private func setupViews() {
         currencyListTableview.rowHeight = UITableView.automaticDimension
-        currencyListTableview.estimatedRowHeight = 56
+        currencyListTableview.estimatedRowHeight = 91
         
         self.sortTextField.inputView = pickerView
         pickerView.delegate = self
