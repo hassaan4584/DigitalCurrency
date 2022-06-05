@@ -30,6 +30,8 @@
 		1A8B74C2284D43260094FD40 /* DigitalCurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C1284D43260094FD40 /* DigitalCurrencyDTO.swift */; };
 		1A8B74C4284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C3284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift */; };
 		1A8B74C6284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C5284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift */; };
+		1A8B74C7284D487D0094FD40 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F82845376400A102C1 /* MockURLProtocol.swift */; };
+		1A8B74C8284D487D0094FD40 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE59F72845376400A102C1 /* MockNetworkManager.swift */; };
 		1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */; };
 		1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */; };
 		1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */; };
@@ -607,6 +609,7 @@
 				1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */,
 				1ACE59E528452BDD00A102C1 /* NetworkManager.swift in Sources */,
 				1A8B74B0284CEB250094FD40 /* HomeViewModelProtocol.swift in Sources */,
+				1A8B74C8284D487D0094FD40 /* MockNetworkManager.swift in Sources */,
 				1A8B7490284908770094FD40 /* CryptoDetailViewModel.swift in Sources */,
 				1ABBC9F828469C980026EFA9 /* UnitTestUtils.swift in Sources */,
 				1ACE5A0328454F5E00A102C1 /* DotsLoadingIndicator.swift in Sources */,
@@ -617,6 +620,7 @@
 				1A8B74A1284C93080094FD40 /* CurrencyListDetailsItemTVCell.swift in Sources */,
 				1ACE59FF28454EF400A102C1 /* Observable.swift in Sources */,
 				1ACE59E328452BCE00A102C1 /* NetworkManagerProtocol.swift in Sources */,
+				1A8B74C7284D487D0094FD40 /* MockURLProtocol.swift in Sources */,
 				1A8B74A9284CE2D90094FD40 /* CurrencyDetailsItem.swift in Sources */,
 				1A8B74C4284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift in Sources */,
 				1ACE59EC28452CBB00A102C1 /* HiEndpoint.swift in Sources */,
