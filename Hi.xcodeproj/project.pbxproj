@@ -24,6 +24,11 @@
 		1A8B74AE284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74AD284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift */; };
 		1A8B74B0284CEB250094FD40 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74AF284CEB250094FD40 /* HomeViewModelProtocol.swift */; };
 		1A8B74B2284CECAE0094FD40 /* CurrencyHistorySorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74B1284CECAE0094FD40 /* CurrencyHistorySorting.swift */; };
+		1A8B74B6284CF3530094FD40 /* digitalCurrency_btc_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B74B5284CF3530094FD40 /* digitalCurrency_btc_usd.json */; };
+		1A8B74B8284CF3C40094FD40 /* ErrorLimitExceed.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B74B7284CF3C40094FD40 /* ErrorLimitExceed.json */; };
+		1A8B74B9284D005B0094FD40 /* digitalCurrency_btc_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B74B5284CF3530094FD40 /* digitalCurrency_btc_usd.json */; };
+		1A8B74BC284D02040094FD40 /* HomeVCIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */; };
+		1A8B74BF284D0AAE0094FD40 /* HomeVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */; };
 		1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */; };
 		1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */; };
 		1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */; };
@@ -91,6 +96,10 @@
 		1A8B74AD284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		1A8B74AF284CEB250094FD40 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
 		1A8B74B1284CECAE0094FD40 /* CurrencyHistorySorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHistorySorting.swift; sourceTree = "<group>"; };
+		1A8B74B5284CF3530094FD40 /* digitalCurrency_btc_usd.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = digitalCurrency_btc_usd.json; sourceTree = "<group>"; };
+		1A8B74B7284CF3C40094FD40 /* ErrorLimitExceed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ErrorLimitExceed.json; sourceTree = "<group>"; };
+		1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCIntegrationTests.swift; sourceTree = "<group>"; };
+		1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCTests.swift; sourceTree = "<group>"; };
 		1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkService.swift; sourceTree = "<group>"; };
 		1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyMetadata.swift; sourceTree = "<group>"; };
@@ -212,6 +221,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1A8B74BA284D01A70094FD40 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */,
+			);
+			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
+		1A8B74BD284D0A760094FD40 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE59FB28454B2E00A102C1 /* Home */,
+				1A8B749528490FB90094FD40 /* Details */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		1ABBC9EC28465EDA0026EFA9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,8 +284,8 @@
 			children = (
 				1ACE5A0B2845564F00A102C1 /* Utils */,
 				1ACE59F62845374000A102C1 /* MockNetworkLayer */,
-				1ACE59FB28454B2E00A102C1 /* Home */,
-				1A8B749528490FB90094FD40 /* Details */,
+				1A8B74BA284D01A70094FD40 /* IntegrationTests */,
+				1A8B74BD284D0A760094FD40 /* UnitTests */,
 			);
 			path = HiTests;
 			sourceTree = "<group>";
@@ -327,7 +353,10 @@
 			isa = PBXGroup;
 			children = (
 				1ACE59C72844B20C00A102C1 /* HomeViewModelTests.swift */,
+				1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */,
+				1A8B74B7284CF3C40094FD40 /* ErrorLimitExceed.json */,
 				1ACE5A0E284557C500A102C1 /* digitalCurrency_eth_usd.json */,
+				1A8B74B5284CF3530094FD40 /* digitalCurrency_btc_usd.json */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -515,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8B74B9284D005B0094FD40 /* digitalCurrency_btc_usd.json in Resources */,
 				1ABBC9F728469C810026EFA9 /* digitalCurrency_eth_usd.json in Resources */,
 				1ACE59BD2844B20C00A102C1 /* LaunchScreen.storyboard in Resources */,
 				1A8B7494284908A40094FD40 /* CryptoDetails.storyboard in Resources */,
@@ -527,6 +557,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8B74B6284CF3530094FD40 /* digitalCurrency_btc_usd.json in Resources */,
+				1A8B74B8284CF3C40094FD40 /* ErrorLimitExceed.json in Resources */,
 				1ACE5A0F284557C500A102C1 /* digitalCurrency_eth_usd.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,6 +642,8 @@
 			files = (
 				1ACE59FA2845376400A102C1 /* MockURLProtocol.swift in Sources */,
 				1ACE59F92845376400A102C1 /* MockNetworkManager.swift in Sources */,
+				1A8B74BF284D0AAE0094FD40 /* HomeVCTests.swift in Sources */,
+				1A8B74BC284D02040094FD40 /* HomeVCIntegrationTests.swift in Sources */,
 				1ACE59C82844B20C00A102C1 /* HomeViewModelTests.swift in Sources */,
 				1ACE5A0D2845566000A102C1 /* UnitTestUtils.swift in Sources */,
 				1A8B749728490FFC0094FD40 /* CryptoDetailsVCTests.swift in Sources */,

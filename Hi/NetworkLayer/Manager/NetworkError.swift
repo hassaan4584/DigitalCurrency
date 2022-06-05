@@ -10,7 +10,6 @@ import Foundation
 public enum NetworkError: Error {
     case error(statusCode: Int, data: Data?)
     case noInternet
-    case cancelled
     case generic(Error)
     case emptyData
 
@@ -21,8 +20,6 @@ public enum NetworkError: Error {
             return "Error Code: \(statusCode)"
         case .noInternet:
             return "No internet connection"
-        case .cancelled:
-            return "Request cancelled"
         case .generic(let error):
             return "\(error.localizedDescription)"
         case .emptyData:
