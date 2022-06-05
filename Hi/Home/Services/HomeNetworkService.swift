@@ -32,9 +32,9 @@ final class HomeNetworkService: NetowkService {
                 case .finished:
                     break
                 }
-            }) { (currencyDTO: DigitalCurrencyDTO) in
+            }, receiveValue: { (currencyDTO: DigitalCurrencyDTO) in
                 onSuccess(currencyDTO)
-            }
+            })
             .store(in: &cancellables)
     }
 }
