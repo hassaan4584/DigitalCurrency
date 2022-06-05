@@ -29,6 +29,9 @@
 		1A8B74B9284D005B0094FD40 /* digitalCurrency_btc_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A8B74B5284CF3530094FD40 /* digitalCurrency_btc_usd.json */; };
 		1A8B74BC284D02040094FD40 /* HomeVCIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */; };
 		1A8B74BF284D0AAE0094FD40 /* HomeVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */; };
+		1A8B74C2284D43260094FD40 /* DigitalCurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C1284D43260094FD40 /* DigitalCurrencyDTO.swift */; };
+		1A8B74C4284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C3284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift */; };
+		1A8B74C6284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B74C5284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift */; };
 		1ABBC9EE28465EEC0026EFA9 /* HomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */; };
 		1ABBC9F02846617D0026EFA9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */; };
 		1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */; };
@@ -101,6 +104,9 @@
 		1A8B74BB284D02040094FD40 /* HomeVCIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCIntegrationTests.swift; sourceTree = "<group>"; };
 		1A8B74BE284D0AAE0094FD40 /* HomeVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCTests.swift; sourceTree = "<group>"; };
 		1A8B74C0284D3A520094FD40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1A8B74C1284D43260094FD40 /* DigitalCurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyDTO.swift; sourceTree = "<group>"; };
+		1A8B74C3284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDigitalCurrencyDailyDTO.swift; sourceTree = "<group>"; };
+		1A8B74C5284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDigitalCurrencyDaily.swift; sourceTree = "<group>"; };
 		1ABBC9ED28465EEC0026EFA9 /* HomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkService.swift; sourceTree = "<group>"; };
 		1ABBC9EF2846617D0026EFA9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalCurrencyMetadata.swift; sourceTree = "<group>"; };
@@ -396,7 +402,10 @@
 		1ACE5A05284550FB00A102C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1A8B74C1284D43260094FD40 /* DigitalCurrencyDTO.swift */,
 				1ABBC9F1284663170026EFA9 /* DigitalCurrencyMetadata.swift */,
+				1A8B74C3284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift */,
+				1A8B74C5284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -621,11 +630,13 @@
 				1ACE59FF28454EF400A102C1 /* Observable.swift in Sources */,
 				1ACE59E328452BCE00A102C1 /* NetworkManagerProtocol.swift in Sources */,
 				1A8B74A9284CE2D90094FD40 /* CurrencyDetailsItem.swift in Sources */,
+				1A8B74C4284D438F0094FD40 /* TimeSeriesDigitalCurrencyDailyDTO.swift in Sources */,
 				1ACE59EC28452CBB00A102C1 /* HiEndpoint.swift in Sources */,
 				1A8B74A6284CC1C10094FD40 /* AppConstants.swift in Sources */,
 				1A8B74AC284CE90C0094FD40 /* CryptoDetails.swift in Sources */,
 				1ABBC9F428466C290026EFA9 /* HomeCurrencyListTVCell.swift in Sources */,
 				1A8B749A284915BA0094FD40 /* DetailsNavigationCoordinator.swift in Sources */,
+				1A8B74C6284D44E50094FD40 /* TimeSeriesDigitalCurrencyDaily.swift in Sources */,
 				1ACE59EE284530C200A102C1 /* NetworkLogger.swift in Sources */,
 				1ACE59E828452C5100A102C1 /* Endpoint.swift in Sources */,
 				1ABBC9F2284663170026EFA9 /* DigitalCurrencyMetadata.swift in Sources */,
@@ -635,6 +646,7 @@
 				1A8B74AE284CE9290094FD40 /* CryptoDetailViewModelProtocol.swift in Sources */,
 				1ACE59F0284530D100A102C1 /* NetworkError.swift in Sources */,
 				1A8B748A2847DF480094FD40 /* RequestType.swift in Sources */,
+				1A8B74C2284D43260094FD40 /* DigitalCurrencyDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

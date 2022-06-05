@@ -62,12 +62,12 @@ class CryptoDetailVC: UIViewController, UITableViewDelegate {
     }
 
     func updateViews(with metadata: DigitalCurrencyMetadata) {
-        self.digitalCurrencyNameLabel.text = metadata.the3DigitalCurrencyName
+        self.digitalCurrencyNameLabel.text = metadata.digitalCurrencyName
         self.digitalCurrencyCodeLabel.text = "(\(metadata.digitalCurrencyCode))"
-        self.marketNameLabel.text = metadata.the5MarketName
-        self.marketCodeLabel.text = "(\(metadata.the4MarketCode)"
-        self.lastUpdatedLabel.text = metadata.the6LastRefreshed
-        self.lastUpdatedTimezoneLabel.text = "(\(metadata.the7TimeZone))"
+        self.marketNameLabel.text = metadata.marketName
+        self.marketCodeLabel.text = "(\(metadata.marketCode)"
+        self.lastUpdatedLabel.text = metadata.lastRefreshed
+        self.lastUpdatedTimezoneLabel.text = "(\(metadata.timeZone))"
     }
 
     // MARK: - Tableview
