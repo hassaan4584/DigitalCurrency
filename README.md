@@ -12,7 +12,8 @@
 * Coordinator class to coordinate UI navigations.
 * Unit Test cases and Integration Test cases.
 * Simple UITestcase.
-* [SwiftLint](https://github.com/realm/SwiftLint) is used to standardize coding style
+* App uses Dependency Injection and abstraction techniques to separate UI from the business logic.
+* [SwiftLint](https://github.com/realm/SwiftLint) is used to standardize coding style.
 * [This](https://www.alphavantage.co/query?apikey=5WDAFC09SA7SXNBI&function=DIGITAL_CURRENCY_DAILY&market=USD&symbol=BTC) is the sample api request. The api itself is not as eyecatching from a user's perspective.
 
 ### How to run the project? ###
